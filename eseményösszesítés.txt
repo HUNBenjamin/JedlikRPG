@@ -1,0 +1,119 @@
+∑ Helyszínek:
+
+Kezdőértékek:
+
+
+idő:
+
+	Könnyű: Minden belefér	                                30p
+	Közepes: Ha étkezel, nem tudsz jegyet venni/hugyozni	20p  
+	Nehéz: El tudsz menni hugyozni 	                        7p
+	Extrém: Nincs időd semmire                              3p
+	
+elegem van: 0
+éhség: 50
+húgyhólyag állapot: 80
+erő: 0
+ösztöndíj:
+	Könnyű: 60.000
+	Közepes: 42.000
+	Nehéz: 25.000
+	Extrém: 8.000
+
+
+Otthon:
+	- étkezés:
+		-éhség: 25	        -idő 15p
+	- vizelés:
+		-Húgyhólyag állapot    reseteli a statot 0ra     -idő 2p
+	- +alvásidő:
+		Könnyű: 8ó
+		Közepes: 6ó
+		Nehéz: 3ó
+		Extrém: 0ó
+
+Otthon -> Buszmegálló:
+			Séta:      3p 
+			Jegyvétel: 2p
+
+Buszmegálló -> Szt. István út (7.30-ra ér be): HA mész euróbolt: 7.45re érsz be az A épületbe
+					       HA nem:		 7.35re érsz be az A épületbe
+		- r/lekoldulnak
+	    -> euróbolt: 
+			Kaja:    3000f	-20 éhség
+			Alkohol: 5000f  -20 elegem van
+			Pelenka: 15.000f  nem kell elmenned többet hugyozni
+	    -> A épület:
+		Ebédlő: 
+			Automata: -2p/item
+				Rudi: -5 éhség	-500f
+				Kávé: +5erő	-300f
+				Eldobható pelenka: egyszer behugyozhatsz -6000f
+			Uzsipénz lopás:
+					Könnyű:  10%   +1000f
+					Közepes: 25%   +2500f
+					Nehéz:   40%   +4000f
+					Extrém:  60%   +6000f
+						HA vesztesz, vége.
+			Folyosó:
+				-> Mellékhelyiség:
+						Dohányzás: 	-20 elegem van -3p
+						Vizelés:   	-2p 
+						r/Galambfight: 	-5p, ha erő > 0 = 1p
+					->angol +15 elegem van
+					->töri  +15 elegem van
+					->matek +15 elegem van
+					->FIZIKA 	+30 elegem van
+						
+					->IRODALOM	+30 elegem van
+				-> Gépterem:
+						BOSS
+					 
+			Gépészlépcső:
+					Könnyű:  10%   1p
+					Közepes: 25%   3p
+					Nehéz:   40%   5p
+					Extrém:  60%   8p
+					 ->Orvosi szoba
+					->angol
+A épület->B épület:
+		első kapu:
+			-Találkozás a 196-os entitással (iskolaőr)
+			-50% HOVA HOVA?
+			-50% Lezárták, nincs olyan, hogy első kapu, csak hátsó
+		hátsó kapu:
+			->B épület - nem nyílik -> menj a büfébe a távkapcsolóért
+			->PLC terem:
+				->titkos lyuk (25ös terem) - titkos OP fegyver
+		a-b épület köze:
+			-> optional/cigiszünet:
+				- -20 elegem van
+			-> Cigaretta árulás:
+				- +5000f
+					
+B épület:
+	->tesiterem:
+		->szertár:
+			- +erő - +10erő/10m
+		->testnevelés óra:
+			-50% - nincs óra
+			-50% - Németh Ádám éppen órát tart:
+				-Tetszik a cipője tanár úr - elenged szabad fogalalkozásra (szertár)
+				-Órát tart - +5erő/10m
+				-5 percnyi órát tart - +0 erő, elküld pingpongozni - +3 erő/10m
+	->öltöző:
+		-random/ájulást okoz a szag
+		-testnevelés felszerelésbe öltözés 5p
+	->Pince:
+		-random/óriáspatkány harc
+		-teleport (shortcut) random helyre a mapon (Jedliken belül)
+		-legurul a labda
+	->Padlás:
+		-Black market:
+			-fegyverek
+			-értékes itemek
+			
+			
+
+		
+	
