@@ -10,24 +10,13 @@ namespace JedlikRPG
     {
         static void kh_1120()
         {
-            Console.WriteLine("Add meg a nehézségi szintet: ");
-            Console.WriteLine("Könnyű - 1");
-            Console.WriteLine("Közepes - 2");
-            Console.WriteLine("Nehéz - 3");
-            Console.WriteLine("Extrém - 4");
-            int nehezseg = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Nyomj egy entert a kezdéshez ");
+            ConsoleKeyInfo nehezseg = Console.ReadKey();
+            Console.Clear();
             Nehezseg(nehezseg);
         }
-        static double Nehezseg(int nehezsegiSzint)
+        static double Nehezseg(ConsoleKeyInfo keyInfo)
         {
-            int konnyu = 1;
-            int kozepes = 2;
-            int nehez = 3;
-            int extrem = 4;
-            int elegemvan = 0;
-            int ehseg = 50;
-            int hugyholyagAllapot = 80;
-            int ero = 0;
             int alvasido = 0;
             int reggelido = 0;
             int osztondij = 0;
@@ -37,8 +26,8 @@ namespace JedlikRPG
             Console.WriteLine("Nehéz - 3");
             Console.WriteLine("Extrém - 4");
             Console.Write("Add meg a nehézségi szintet: ");
-            nehezsegiSzint = Convert.ToInt32(Console.ReadLine());
-            if (nehezsegiSzint == konnyu)
+            int nehezsegiSzint = Convert.ToInt32(Console.ReadLine());
+            if (nehezsegiSzint == 1)
             {
                 alvasido = 480;
                 reggelido = 30;
@@ -46,7 +35,7 @@ namespace JedlikRPG
                 szorzo = 0.1;
                 Console.WriteLine("Könnyű nehézség.");
             }
-            else if (nehezsegiSzint == kozepes)
+            else if (nehezsegiSzint == 2)
             {
                 alvasido = 360;
                 reggelido = 20;
@@ -54,7 +43,7 @@ namespace JedlikRPG
                 szorzo = 0.25;
                 Console.WriteLine("Közepes nehézség.");
             }
-            else if (nehezsegiSzint == nehez)
+            else if (nehezsegiSzint == 3)
             {
                 alvasido = 180;
                 reggelido = 7;
@@ -62,7 +51,7 @@ namespace JedlikRPG
                 szorzo = 0.4;
                 Console.WriteLine("Nehéz nehézség.");
             }
-            else if (nehezsegiSzint == extrem)
+            else if (nehezsegiSzint == 4)
             {
                 reggelido = 3;
                 osztondij = 8000;
@@ -73,10 +62,6 @@ namespace JedlikRPG
             return reggelido;
             return osztondij;
             return szorzo;
-            return elegemvan;
-            return ehseg;
-            return hugyholyagAllapot;
-            return ero;
         }
     }
 }
