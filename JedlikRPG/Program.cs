@@ -20,7 +20,6 @@ namespace JedlikRPG
             string név = Console.ReadLine();
 
             Console.WriteLine("A karaktered neve: " + név);
-=======
             int alvas = 6;
             int busz = 30;
             int elegemvan = 0;
@@ -41,6 +40,8 @@ namespace JedlikRPG
             Console.WriteLine("");
             Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)");
             int choice = 0;
+
+
 
             while(gameover != true)
             {
