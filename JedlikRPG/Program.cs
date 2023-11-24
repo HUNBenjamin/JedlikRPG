@@ -1,20 +1,18 @@
-
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace JedlikRPG
 {
     internal partial class Program
     {
-        string command;
         static void Main(string[] args)
         {
-            int nehezseg = Convert.ToInt32(Console.ReadLine());
-            Nehezseg(nehezseg);
-=======
+            //int nehezseg = Convert.ToInt32(Console.ReadLine());
+            //Nehezseg(nehezseg);
 
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("   __     ______     _____     __         __     __  __     ______     ______   ______    \r\n  /\\ \\   /\\  ___\\   /\\  __-.  /\\ \\       /\\ \\   /\\ \\/ /    /\\  == \\   /\\  == \\ /\\  ___\\   \r\n _\\_\\ \\  \\ \\  __\\   \\ \\ \\/\\ \\ \\ \\ \\____  \\ \\ \\  \\ \\  _\"-.  \\ \\  __<   \\ \\  _-/ \\ \\ \\__ \\  \r\n/\\_____\\  \\ \\_____\\  \\ \\____-  \\ \\_____\\  \\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\    \\ \\_____\\ \r\n\\/_____/   \\/_____/   \\/____/   \\/_____/   \\/_/   \\/_/\\/_/   \\/_/ /_/   \\/_/     \\/_____/ \r\n");
@@ -23,7 +21,6 @@ namespace JedlikRPG
             string név = Console.ReadLine();
 
             Console.WriteLine("A karaktered neve: " + név);
-=======
             int alvas = 6;
             int busz = 30;
             int elegemvan = 0;
@@ -31,8 +28,9 @@ namespace JedlikRPG
             int hugyholyag = 80;
             int ero = 0;
             bool gameover = false;
+            List<string> Inventory = new List<string>();
 
-            Console.WriteLine($"Idő: ");
+        Console.WriteLine($"Idő: ");
             Console.WriteLine($"Elegem van: {elegemvan}");
             Console.WriteLine($"Éhség: {ehseg}");
             Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
@@ -42,7 +40,7 @@ namespace JedlikRPG
             Console.WriteLine($"Egy újabb napra ébredtél szánalmas életedben {alvas} óra alvással. Ma is be kell menned a Jedlik Ányos Gépipari és Informatikai Technikumba.");
             Console.WriteLine($"Készülj el, a busz {busz} perc múlva érkezik");
             Console.WriteLine("");
-            Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)");
+            Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
             int choice = 0;
 
             while(gameover != true)
@@ -98,6 +96,13 @@ namespace JedlikRPG
 
                         busz -= 3;
                         Console.WriteLine($"Kisétáltál a buszmegállóba, a járatod {busz} perc múlva érkezik");
+                    }
+                    if (choice == 4)
+                    {
+                        foreach (string item in Inventory)
+                        {
+                            Console.WriteLine(item);
+                        }
                     }
                     if (busz < 0)
                     {
