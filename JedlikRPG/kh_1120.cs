@@ -10,10 +10,7 @@ namespace JedlikRPG
     {
         static void kh_1120()
         {
-            Console.Write("Nyomj egy entert a kezdéshez ");
-            ConsoleKeyInfo nehezseg = Console.ReadKey();
-            Console.Clear();
-            Nehezseg(nehezseg);
+            
         }
         static double Nehezseg(ConsoleKeyInfo keyInfo)
         {
