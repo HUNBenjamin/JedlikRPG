@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.Write("Nyomj bármely számot a kezdéshez: ");
+            int nehezseg = Convert.ToInt32(Console.ReadLine());
+            Nehezseg(nehezseg);
         }
     }
 }
