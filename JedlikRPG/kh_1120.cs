@@ -32,6 +32,11 @@ namespace JedlikRPG
             int reggelido = 0;
             int osztondij = 0;
             double szorzo = 0;
+            Console.WriteLine("Könnyű - 1");
+            Console.WriteLine("Közepes - 2");
+            Console.WriteLine("Nehéz - 3");
+            Console.WriteLine("Extrém - 4");
+            Console.Write("Add meg a nehézségi szintet: ");
             nehezsegiSzint = Convert.ToInt32(Console.ReadLine());
             if (nehezsegiSzint == konnyu)
             {
