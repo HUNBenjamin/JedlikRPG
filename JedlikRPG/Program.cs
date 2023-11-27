@@ -28,6 +28,9 @@ namespace JedlikRPG
             int ero = 0;
             bool gameover = false;
 
+
+            Console.ForegroundColor = ConsoleColor.White;
+
             Console.WriteLine($"Helyszín: Otthon ");
             Console.WriteLine($"Idő: ");
             Console.WriteLine($"Elegem van: {elegemvan}");
@@ -44,10 +47,31 @@ namespace JedlikRPG
 
             while(gameover != true)
             {
-                otthon(choice, busz, elegemvan, ehseg, hugyholyag, ero, gameover);
-            }
-            
-        }
+                while (choice < 1 || choice > 3)
+                {
+                    choice = Input("Választás: ");
+                    if (choice == 1)
+                    {
+                        vizeles(choice, busz, elegemvan, ehseg, hugyholyag, ero);
+                    }
+                    if (choice == 2)
+                    {
+                        reggelizes(choice, busz, elegemvan, ehseg, hugyholyag, ero);
+                    }
+                    if (choice == 3)
+                    {
+                        buszSeta(choice, busz, elegemvan, ehseg, hugyholyag, ero);
+                    }
+                    if (busz < 0)
+                    {
+                        Console.WriteLine("\nSajnos lekésted a buszt.");
+                        Console.WriteLine("Nem sikerült beérned az iskolába, így túl sok hiányzás miatt kirúgtak.");
+                        gameover = true;
+                        Console.WriteLine("A játéknak vége\n");
+                    }
 
+                }
+            }
+        }
     }
 }
