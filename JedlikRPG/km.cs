@@ -21,6 +21,15 @@ namespace JedlikRPG
             string[] Descriptions = { "-20 éhség", "-20 elegem van", "A nap folyamán nem kell hugyoznod" };
         }
 
+        static void statDisplay(int choice, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, List<string> Inventory, int péz) {
+            Console.WriteLine($"Idő: ");
+            Console.WriteLine($"Elegem van: {elegemvan}");
+            Console.WriteLine($"Éhség: {ehseg}");
+            Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+            Console.WriteLine($"Egyenleged: {péz}");
+            Console.WriteLine($"Erő: {ero}\n\n");
+        }
+
         static void Eurobolt(int choice, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, List<string> Inventory)
         {
 
@@ -37,12 +46,7 @@ namespace JedlikRPG
                     {
                         Console.Clear();
 
-                        Console.WriteLine($"Idő: ");
-                        Console.WriteLine($"Elegem van: {elegemvan}");
-                        Console.WriteLine($"Éhség: {ehseg}");
-                        Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
-                        Console.WriteLine($"Egyenleged: {péz}");
-                        Console.WriteLine($"Erő: {ero}\n\n");
+                        statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
 
                         Console.WriteLine("\nMegvetted az ételt.");
                         péz = péz - 3000;
