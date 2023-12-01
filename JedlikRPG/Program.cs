@@ -7,6 +7,15 @@ using System.Collections.Generic;
 
 namespace JedlikRPG
 {
+    public static class Item
+    {
+
+        public static string[] Names = { "Taknyos zsebkendő", "Kaja", "Alkohol", "Pelenka" };
+        public static string[] Descriptions = { "Taknyos", "Egyszerű pékáru ami csökkenti az éhséget.", "A subidubi segíti általános jókedvünk megőrzését", "A nap folyamán nem kell hugyoznod" };
+        public static int[] Elegemvan = { 0, 0, -20, 0 };
+        public static int[] Hugyholyag = { 0, 0, 25, 0 };
+        public static int[] Erő = { 0, 5, 5, 0 };
+    }
     internal partial class Program
     {
         static void Main(string[] args)
@@ -16,6 +25,11 @@ namespace JedlikRPG
 
 
             int alvas = 8;
+            Console.WriteLine("   __     ______     _____     __         __     __  __     ______     ______   ______    \r\n  /\\ \\   /\\  ___\\   /\\  __-.  /\\ \\       /\\ \\   /\\ \\/ /    /\\  == \\   /\\  == \\ /\\  ___\\   \r\n _\\_\\ \\  \\ \\  __\\   \\ \\ \\/\\ \\ \\ \\ \\____  \\ \\ \\  \\ \\  _\"-.  \\ \\  __<   \\ \\  _-/ \\ \\ \\__ \\  \r\n/\\_____\\  \\ \\_____\\  \\ \\____-  \\ \\_____\\  \\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\    \\ \\_____\\ \r\n\\/_____/   \\/_____/   \\/____/   \\/_____/   \\/_/   \\/_/\\/_/   \\/_/ /_/   \\/_/     \\/_____/ \r\n");
+            Console.WriteLine("Nyomj egy entert a kezdéshez ");
+            ConsoleKeyInfo nehezseg = Console.ReadKey();
+            Nehezseg(nehezseg);
+         
             int busz = 30;
             int osztondij = 60000;
             double szorzo = 0.1;
@@ -54,7 +68,6 @@ namespace JedlikRPG
             }
 
 
-
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine($"Helyszín: Otthon ");
@@ -87,6 +100,14 @@ namespace JedlikRPG
                         osztondij -= 8000;
                         Console.WriteLine("Leszálltál a buszról, miután megérkeztél a megállóba. A város látványa mindig szomorúvá tesz, azonban most különösen letaglózónak érzed ezt a helyet, mely egykor szívedet melengette, de már csak a gyári naplementét bámulod melankóliában.");
                         break;
+
+                        Console.WriteLine("Kinyitva a táskád ezt találod:");
+                        foreach (string Name in Item.Names)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(Name);
+
+                        }
                     }
                     else
                     {
