@@ -7,13 +7,22 @@ using System.Collections.Generic;
 
 namespace JedlikRPG
 {
+    public static class Item
+    {
+
+        public static string[] Names = { "Taknyos zsebkendő", "Kaja", "Alkohol", "Pelenka" };
+        public static string[] Descriptions = { "Taknyos", "Egyszerű pékáru ami csökkenti az éhséget.", "A subidubi segíti általános jókedvünk megőrzését", "A nap folyamán nem kell hugyoznod" };
+        public static int[] Elegemvan = { 0, 0, -20, 0 };
+        public static int[] Hugyholyag = { 0, 0, 25, 0 };
+        public static int[] Erő = { 0, 5, 5, 0 };
+    }
     internal partial class Program
     {
         static void Main(string[] args)
         {
 
             Console.ForegroundColor = ConsoleColor.Blue;
-
+            Console.WriteLine("   __     ______     _____     __         __     __  __     ______     ______   ______    \r\n  /\\ \\   /\\  ___\\   /\\  __-.  /\\ \\       /\\ \\   /\\ \\/ /    /\\  == \\   /\\  == \\ /\\  ___\\   \r\n _\\_\\ \\  \\ \\  __\\   \\ \\ \\/\\ \\ \\ \\ \\____  \\ \\ \\  \\ \\  _\"-.  \\ \\  __<   \\ \\  _-/ \\ \\ \\__ \\  \r\n/\\_____\\  \\ \\_____\\  \\ \\____-  \\ \\_____\\  \\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\    \\ \\_____\\ \r\n\\/_____/   \\/_____/   \\/____/   \\/_____/   \\/_/   \\/_/\\/_/   \\/_/ /_/   \\/_/     \\/_____/ \r\n");
             Console.WriteLine("Nyomj egy entert a kezdéshez ");
             ConsoleKeyInfo nehezseg = Console.ReadKey();
             Nehezseg(nehezseg);
@@ -26,7 +35,6 @@ namespace JedlikRPG
             int ero = 0;
             bool gameover = false;
             List<string> Inventory = new List<string>();
-
 
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -73,9 +81,12 @@ namespace JedlikRPG
                     }
                     if (choice == 4)
                     {
-                        foreach (string item in Inventory)
+                        Console.WriteLine("Kinyitva a táskád ezt találod:");
+                        foreach (string Name in Item.Names)
                         {
-                            Console.WriteLine(item);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(Name);
+
                         }
                     }
                     if (busz < 0)
@@ -86,6 +97,7 @@ namespace JedlikRPG
                         Console.WriteLine("\nA játéknak vége\n");
                         break;
                     }
+
 
                 }
             }
