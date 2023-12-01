@@ -105,6 +105,29 @@ namespace JedlikRPG
                 Console.WriteLine("Megérkezett a járat.\nA városközpont felé tartasz és épp azon elmélkedsz hol romlott el minden.");
 
         }
+
+        static int blicceles(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, bool jegy)
+        {
+            Random rand = new Random();
+
+            Console.Clear();
+
+            Console.WriteLine($"Helyszín: Busz ");
+            Console.WriteLine($"Idő: ");
+            Console.WriteLine($"Elegem van: {elegemvan}");
+            Console.WriteLine($"Éhség: {ehseg}");
+            Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+            Console.WriteLine($"Erő: {ero}\n\n");
+
+            int blicc = rand.Next(1, 11);
+            if (jegy == false && blicc == 6)
+            {
+                Console.WriteLine("Felszállt egy jegyellenőr és mivel nem tudtál neki vonaljegyet mutatni 8000Ft-ra büntetett");
+                return 1;
+            }
+
+            return 0;
+        }
     }
 }
 

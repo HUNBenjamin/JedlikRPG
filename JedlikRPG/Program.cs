@@ -24,6 +24,7 @@ namespace JedlikRPG
             int ehseg = 50;
             int hugyholyag = 80;
             int ero = 0;
+            int osztondij = 60000;
 
             bool buszjegy = false;
 
@@ -58,7 +59,17 @@ namespace JedlikRPG
                 }
                 else
                 {
-                    break;
+                    if (blicceles(choice, busz, elegemvan, ehseg, hugyholyag, ero, buszjegy) == 1)
+                    {
+                        osztondij -= 8000;
+                        Console.WriteLine("Leszálltál a buszról, miután megérkeztél a megállóba. A város látványa mindig szomorúvá tesz, azonban most különösen letaglózónak érzed ezt a helyet, mely egykor szívedet melengette, de már csak a gyári naplementét bámulod melankóliában.");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Leszálltál a buszról, miután megérkeztél a megállóba. A város látványa mindig szomorúvá tesz, azonban most különösen letaglózónak érzed ezt a helyet, mely egykor szívedet melengette, de már csak a gyári naplementét bámulod melankóliában.");
+                        break;
+                    }
                 }
             }
         }
