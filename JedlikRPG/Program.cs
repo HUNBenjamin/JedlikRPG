@@ -14,12 +14,11 @@ namespace JedlikRPG
 
             Console.ForegroundColor = ConsoleColor.Blue;
 
-            Console.WriteLine("Nyomj egy entert a kezdéshez ");
-            ConsoleKeyInfo nehezseg = Console.ReadKey();
-            Nehezseg(nehezseg);
-          
-            int alvas = 6;
+
+            int alvas = 8;
             int busz = 30;
+            int osztondij = 60000;
+            double szorzo = 0.1;
             int elegemvan = 0;
             int ehseg = 50;
             int hugyholyag = 80;
@@ -30,6 +29,30 @@ namespace JedlikRPG
 
             bool gameover = false;
             List<string> Inventory = new List<string>();
+            
+            Console.WriteLine("Könnyű - 1");
+            Console.WriteLine("Közepes - 2");
+            Console.WriteLine("Nehéz - 3");
+            Console.WriteLine("Extrém - 4");
+            Console.Write("Add meg a nehézségi szintet: ");
+            int nehezsegiSzint = Convert.ToInt32(Console.ReadLine());
+            if (nehezsegiSzint == 1)
+            {
+                Nehezseg(8, 30, 60000, 0.1);
+            }
+            else if (nehezsegiSzint == 2)
+            {
+                Nehezseg(6, 20, 42000, 0.25);
+            }
+            else if (nehezsegiSzint == 2)
+            {
+                Nehezseg(3, 7, 25000, 0.4);
+            }
+            else if (nehezsegiSzint == 2)
+            {
+                Nehezseg(0, 3, 8000, 0.6);
+            }
+
 
 
             Console.ForegroundColor = ConsoleColor.White;
