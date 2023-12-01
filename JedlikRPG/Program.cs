@@ -14,12 +14,11 @@ namespace JedlikRPG
         {
 
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("   __     ______     _____     __         __     __  __     ______     ______   ______    \r\n  /\\ \\   /\\  ___\\   /\\  __-.  /\\ \\       /\\ \\   /\\ \\/ /    /\\  == \\   /\\  == \\ /\\  ___\\   \r\n _\\_\\ \\  \\ \\  __\\   \\ \\ \\/\\ \\ \\ \\ \\____  \\ \\ \\  \\ \\  _\"-.  \\ \\  __<   \\ \\  _-/ \\ \\ \\__ \\  \r\n/\\_____\\  \\ \\_____\\  \\ \\____-  \\ \\_____\\  \\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\    \\ \\_____\\ \r\n\\/_____/   \\/_____/   \\/____/   \\/_____/   \\/_/   \\/_/\\/_/   \\/_/ /_/   \\/_/     \\/_____/ \r\n");
-            Console.Write("\nÍrd be a karaktered nevét: ");
 
-            string név = Console.ReadLine();
-
-            Console.WriteLine("A karaktered neve: " + név);
+            Console.WriteLine("Nyomj egy entert a kezdéshez ");
+            ConsoleKeyInfo nehezseg = Console.ReadKey();
+            Nehezseg(nehezseg);
+          
             int alvas = 6;
             int busz = 30;
             int elegemvan = 0;
@@ -44,6 +43,8 @@ namespace JedlikRPG
             Console.WriteLine("");
             Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)");
             int choice = 0;
+
+
 
             while(gameover != true)
             {
