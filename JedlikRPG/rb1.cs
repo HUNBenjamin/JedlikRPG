@@ -35,14 +35,10 @@ namespace JedlikRPG
             Console.WriteLine($"Éhség: {ehseg}");
             Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
             Console.WriteLine($"Erő: {ero}\n\n");
-
             Console.WriteLine("\nElmentél vizelni egy jót");
-            hugyholyag = 0;
-            busz -= 2;
             Console.WriteLine($"Készülj el, a busz {busz} perc múlva érkezik");
             Console.WriteLine("");
             Console.WriteLine("2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)");
-            choice = 0;
         }
 
         static void reggelizes(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero)
@@ -57,12 +53,11 @@ namespace JedlikRPG
             Console.WriteLine($"Erő: {ero}\n\n");
 
             Console.WriteLine("\nMég életedben nem ettél finomat. Bár a házi koszt nem csillapítja az elégedetlenséged, melyet iskolád okoz.");
-            ehseg -= 25;
-            busz -= 15;
+
             Console.WriteLine($"Készülj el, a busz {busz} perc múlva érkezik");
             Console.WriteLine("");
             Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elmész a buszmegállóba (3 perc)");
-            choice = 0;
+            
         }
 
         static void buszSeta(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero)
@@ -76,7 +71,7 @@ namespace JedlikRPG
             Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
             Console.WriteLine($"Erő: {ero}\n\n");
 
-            busz -= 3;
+
             Console.WriteLine($"Kisétáltál a buszmegállóba, a járatod {busz} perc múlva érkezik");
         }
 

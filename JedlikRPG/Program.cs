@@ -52,22 +52,31 @@ namespace JedlikRPG
                     choice = Input("Választás: ");
                     if (choice == 1)
                     {
+                        hugyholyag = 0;
+                        busz -= 2;
                         vizeles(choice, busz, elegemvan, ehseg, hugyholyag, ero);
+                        choice = 0;
                     }
                     if (choice == 2)
                     {
+                        ehseg -= 25;
+                        busz -= 15;
                         reggelizes(choice, busz, elegemvan, ehseg, hugyholyag, ero);
+                        choice = 0;
                     }
                     if (choice == 3)
                     {
+                        busz -= 3;
                         buszSeta(choice, busz, elegemvan, ehseg, hugyholyag, ero);
+                        choice = 0;
                     }
                     if (busz < 0)
                     {
                         Console.WriteLine("\nSajnos lekésted a buszt.");
                         Console.WriteLine("Nem sikerült beérned az iskolába, így túl sok hiányzás miatt kirúgtak.");
                         gameover = true;
-                        Console.WriteLine("A játéknak vége\n");
+                        Console.WriteLine("\nA játéknak vége\n");
+                        break;
                     }
 
                 }
