@@ -12,16 +12,12 @@ namespace JedlikRPG
         string command;
         static void Main(string[] args)
         {
-            int nehezseg = Convert.ToInt32(Console.ReadLine());
-            Nehezseg(nehezseg);
 
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("   __     ______     _____     __         __     __  __     ______     ______   ______    \r\n  /\\ \\   /\\  ___\\   /\\  __-.  /\\ \\       /\\ \\   /\\ \\/ /    /\\  == \\   /\\  == \\ /\\  ___\\   \r\n _\\_\\ \\  \\ \\  __\\   \\ \\ \\/\\ \\ \\ \\ \\____  \\ \\ \\  \\ \\  _\"-.  \\ \\  __<   \\ \\  _-/ \\ \\ \\__ \\  \r\n/\\_____\\  \\ \\_____\\  \\ \\____-  \\ \\_____\\  \\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\    \\ \\_____\\ \r\n\\/_____/   \\/_____/   \\/____/   \\/_____/   \\/_/   \\/_/\\/_/   \\/_/ /_/   \\/_/     \\/_____/ \r\n");
-            Console.Write("\nÍrd be a karaktered nevét: ");
-
-            string név = Console.ReadLine();
-
-            Console.WriteLine("A karaktered neve: " + név);
+            Console.WriteLine("Nyomj egy entert a kezdéshez ");
+            ConsoleKeyInfo nehezseg = Console.ReadKey();
+            Nehezseg(nehezseg);
             int alvas = 6;
             int busz = 30;
             int elegemvan = 0;
