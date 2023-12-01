@@ -11,8 +11,8 @@ namespace JedlikRPG
     {
         static void rb1()
         {
-            
-            
+
+
         }
         static int Input(string text)
         {
@@ -38,7 +38,8 @@ namespace JedlikRPG
             Console.WriteLine("\nElmentél vizelni egy jót");
             Console.WriteLine($"Készülj el, a busz {busz} perc múlva érkezik");
             Console.WriteLine("");
-            Console.WriteLine("2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)");
+
+            Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
         }
 
         static void reggelizes(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero)
@@ -51,13 +52,11 @@ namespace JedlikRPG
             Console.WriteLine($"Éhség: {ehseg}");
             Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
             Console.WriteLine($"Erő: {ero}\n\n");
-
             Console.WriteLine("\nMég életedben nem ettél finomat. Bár a házi koszt nem csillapítja az elégedetlenséged, melyet iskolád okoz.");
-
             Console.WriteLine($"Készülj el, a busz {busz} perc múlva érkezik");
             Console.WriteLine("");
-            Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elmész a buszmegállóba (3 perc)");
-            
+
+            Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
         }
 
         static void buszSeta(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero)
@@ -77,7 +76,6 @@ namespace JedlikRPG
 
         static void jegyvetel(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero)
         {
-            Console.WriteLine($"1 - Vásárolj jegyet (2 perc)\nVárd meg a buszt ({busz}) perc");
             choice = 0;
             {
                 Console.Clear();
@@ -91,26 +89,21 @@ namespace JedlikRPG
 
                 Console.WriteLine("Vettél egy menetjegyet, ezzel jogosulttá váltál az utazásra.");
             }
+        }
 
-            static void buszraszallas(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero)
-            {
-                if (choice == 2)
-                {
-                    while (busz > 0)
-                    {
-                        busz--;
-                    }
-                    Console.Clear();
+        static void buszraszallas(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero)
+        {
 
-                    Console.WriteLine($"Helyszín: Busz ");
-                    Console.WriteLine($"Idő: ");
-                    Console.WriteLine($"Elegem van: {elegemvan}");
-                    Console.WriteLine($"Éhség: {ehseg}");
-                    Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
-                    Console.WriteLine($"Erő: {ero}\n\n");
-                    Console.WriteLine("Megérkezett a járat.\nA városközpont felé tartasz és épp azon elmélkedsz hol romlott el minden.");
-                }
-            }
+                Console.Clear();
+
+                Console.WriteLine($"Helyszín: Busz ");
+                Console.WriteLine($"Idő: ");
+                Console.WriteLine($"Elegem van: {elegemvan}");
+                Console.WriteLine($"Éhség: {ehseg}");
+                Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+                Console.WriteLine($"Erő: {ero}\n\n");
+                Console.WriteLine("Megérkezett a járat.\nA városközpont felé tartasz és épp azon elmélkedsz hol romlott el minden.");
+
         }
     }
 }

@@ -24,6 +24,9 @@ namespace JedlikRPG
             int ehseg = 50;
             int hugyholyag = 80;
             int ero = 0;
+
+            bool buszjegy = false;
+
             bool gameover = false;
             List<string> Inventory = new List<string>();
 
@@ -41,6 +44,7 @@ namespace JedlikRPG
             Console.WriteLine($"Egy újabb napra ébredtél szánalmas életedben {alvas} óra alvással. Ma is be kell menned a Jedlik Ányos Gépipari és Informatikai Technikumba.");
             Console.WriteLine($"Készülj el, a busz {busz} perc múlva érkezik");
             Console.WriteLine("");
+
             Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
             int choice = 0;
 
@@ -48,45 +52,13 @@ namespace JedlikRPG
 
             while(gameover != true)
             {
-                while (choice < 1 || choice > 3)
+                if (reggel(choice, busz, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, buszjegy, out choice, out busz, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out buszjegy) == 1)
                 {
-                    choice = Input("Választás: ");
-                    if (choice == 1)
-                    {
-                        hugyholyag = 0;
-                        busz -= 2;
-                        vizeles(choice, busz, elegemvan, ehseg, hugyholyag, ero);
-                        choice = 0;
-                    }
-                    if (choice == 2)
-                    {
-                        ehseg -= 25;
-                        busz -= 15;
-                        reggelizes(choice, busz, elegemvan, ehseg, hugyholyag, ero);
-                        choice = 0;
-                    }
-                    if (choice == 3)
-                    {
-                        busz -= 3;
-                        buszSeta(choice, busz, elegemvan, ehseg, hugyholyag, ero);
-                        choice = 0;
-                    }
-                    if (choice == 4)
-                    {
-                        foreach (string item in Inventory)
-                        {
-                            Console.WriteLine(item);
-                        }
-                    }
-                    if (busz < 0)
-                    {
-                        Console.WriteLine("\nSajnos lekésted a buszt.");
-                        Console.WriteLine("Nem sikerült beérned az iskolába, így túl sok hiányzás miatt kirúgtak.");
-                        gameover = true;
-                        Console.WriteLine("\nA játéknak vége\n");
-                        break;
-                    }
-
+                    gameover = true;
+                }
+                else
+                {
+                    break;
                 }
             }
         }
