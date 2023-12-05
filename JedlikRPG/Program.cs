@@ -20,36 +20,27 @@ namespace JedlikRPG
     {
         static void Main(string[] args)
         {
-
             Console.ForegroundColor = ConsoleColor.Blue;
 
-
-            int alvas = 8;
             Console.WriteLine("   __     ______     _____     __         __     __  __     ______     ______   ______    \r\n  /\\ \\   /\\  ___\\   /\\  __-.  /\\ \\       /\\ \\   /\\ \\/ /    /\\  == \\   /\\  == \\ /\\  ___\\   \r\n _\\_\\ \\  \\ \\  __\\   \\ \\ \\/\\ \\ \\ \\ \\____  \\ \\ \\  \\ \\  _\"-.  \\ \\  __<   \\ \\  _-/ \\ \\ \\__ \\  \r\n/\\_____\\  \\ \\_____\\  \\ \\____-  \\ \\_____\\  \\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\    \\ \\_____\\ \r\n\\/_____/   \\/_____/   \\/____/   \\/_____/   \\/_/   \\/_/\\/_/   \\/_/ /_/   \\/_/     \\/_____/ \r\n");
-            Console.WriteLine("Nyomj egy entert a kezdéshez ");
          
-            int busz = 30;
-            int osztondij = 60000;
-            double szorzo = 0.1;
+            Console.ForegroundColor = ConsoleColor.White;
+            
+            Console.Write("1 - Könnyű\n2 - Közepes\n3 - Nehéz\n4 - Extrém\nAdd meg a nehézségi szintet: ");
+            int nehezseg = int.Parse(Console.ReadLine());
+            Difficulty difficulty = new Difficulty();
+            difficulty.NehezsegErtekek(nehezseg);
+            int alvas = difficulty.Alvas;
+            int busz = difficulty.Busz;
+            int osztondij = difficulty.Osztondij;
+            double szorzo = difficulty.Szorzo;
             int elegemvan = 0;
             int ehseg = 50;
             int hugyholyag = 80;
             int ero = 0;
-
             bool buszjegy = false;
-
             bool gameover = false;
             List<string> Inventory = new List<string>();
-            
-            Console.WriteLine("Könnyű - 1");
-            Console.WriteLine("Közepes - 2");
-            Console.WriteLine("Nehéz - 3");
-            Console.WriteLine("Extrém - 4");
-            Console.Write("Add meg a nehézségi szintet: ");
-            int nehezsegiSzint = Convert.ToInt32(Console.ReadLine());
-
-
-            Console.ForegroundColor = ConsoleColor.White;
 
             Console.WriteLine($"Helyszín: Otthon ");
             Console.WriteLine($"Idő: ");
@@ -58,15 +49,12 @@ namespace JedlikRPG
             Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
             Console.WriteLine($"Erő: {ero}\n\n");
 
-
             Console.WriteLine($"Egy újabb napra ébredtél szánalmas életedben {alvas} óra alvással. Ma is be kell menned a Jedlik Ányos Gépipari és Informatikai Technikumba.");
             Console.WriteLine($"Készülj el, a busz {busz} perc múlva érkezik");
             Console.WriteLine("");
 
             Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
             int choice = 0;
-
-
 
             while(gameover != true)
             {
@@ -87,7 +75,6 @@ namespace JedlikRPG
                         {
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(Name);
-
                         }
                     }
                     else
