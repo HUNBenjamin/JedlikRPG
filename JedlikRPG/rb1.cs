@@ -30,7 +30,6 @@ namespace JedlikRPG
             Console.Clear();
 
             Console.WriteLine($"Helyszín: Otthon ");
-            Console.WriteLine($"Idő: ");
             Console.WriteLine($"Elegem van: {elegemvan}");
             Console.WriteLine($"Éhség: {ehseg}");
             Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
@@ -47,7 +46,6 @@ namespace JedlikRPG
             Console.Clear();
 
             Console.WriteLine($"Helyszín: Otthon ");
-            Console.WriteLine($"Idő: ");
             Console.WriteLine($"Elegem van: {elegemvan}");
             Console.WriteLine($"Éhség: {ehseg}");
             Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
@@ -64,7 +62,6 @@ namespace JedlikRPG
             Console.Clear();
 
             Console.WriteLine($"Helyszín: Buszmegálló");
-            Console.WriteLine($"Idő: ");
             Console.WriteLine($"Elegem van: {elegemvan}");
             Console.WriteLine($"Éhség: {ehseg}");
             Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
@@ -81,7 +78,6 @@ namespace JedlikRPG
                 Console.Clear();
 
                 Console.WriteLine($"Helyszín: Buszmegálló ");
-                Console.WriteLine($"Idő: ");
                 Console.WriteLine($"Elegem van: {elegemvan}");
                 Console.WriteLine($"Éhség: {ehseg}");
                 Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
@@ -97,7 +93,6 @@ namespace JedlikRPG
                 Console.Clear();
 
                 Console.WriteLine($"Helyszín: Busz ");
-                Console.WriteLine($"Idő: ");
                 Console.WriteLine($"Elegem van: {elegemvan}");
                 Console.WriteLine($"Éhség: {ehseg}");
                 Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
@@ -106,14 +101,13 @@ namespace JedlikRPG
 
         }
 
-        static int blicceles(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, bool jegy)
+        static int blicceles(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, bool jegy, int osztondij, out int x1)
         {
             Random rand = new Random();
 
             Console.Clear();
 
             Console.WriteLine($"Helyszín: Busz ");
-            Console.WriteLine($"Idő: ");
             Console.WriteLine($"Elegem van: {elegemvan}");
             Console.WriteLine($"Éhség: {ehseg}");
             Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
@@ -123,9 +117,11 @@ namespace JedlikRPG
             if (jegy == false && blicc == 6)
             {
                 Console.WriteLine("Felszállt egy jegyellenőr és mivel nem tudtál neki vonaljegyet mutatni 8000Ft-ra büntetett");
+                osztondij -= 8000;
+                x1 = osztondij;
                 return 1;
             }
-
+            x1 = osztondij;
             return 0;
         }
     }
