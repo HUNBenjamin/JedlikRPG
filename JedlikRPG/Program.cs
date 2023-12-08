@@ -58,14 +58,26 @@ namespace JedlikRPG
             int choice = 0;
             int choice2 = 0;
 
+
+            while (gameover != true)
+            {
+
                 if (reggel(choice, busz, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, buszjegy, out choice, out busz, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out buszjegy) == 1)
                 {
                     gameover = true;
+                    break;
                 }
 
-                megallo(choice, busz, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, buszjegy, out choice, out busz, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out buszjegy);
+                if(megallo(choice, busz, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, buszjegy, out choice, out busz, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out buszjegy) == 1)
+                {
+                    gameover = true;
+                    break;
+                }
+                else
+                {
+                    blicceles(choice, busz, elegemvan, ehseg, hugyholyag, ero, buszjegy, osztondij, out osztondij);
+                }
 
-                blicceles(choice, busz, elegemvan, ehseg, hugyholyag, ero, buszjegy, osztondij, out osztondij);
                 if (blicceles(choice, busz, elegemvan, ehseg, hugyholyag, ero, buszjegy, osztondij, out osztondij) == 1)
                 {
                     osztondij -= 8000;
@@ -85,6 +97,7 @@ namespace JedlikRPG
                     Console.WriteLine("Placeholder");
                 }
             
+            }
         }
     }
 }

@@ -114,6 +114,16 @@ namespace JedlikRPG
                 Console.WriteLine("Nem sikerült beérned az iskolába, így túl sok hiányzás miatt kirúgtak.");
                 gameover = true;
                 Console.WriteLine("\nA játéknak vége\n");
+                x1 = choice;
+                x2 = busz;
+                x3 = elegemvan;
+                x4 = ehseg;
+                x5 = hugyholyag;
+                x6 = ero;
+                x7 = Inventory;
+                x8 = gameover;
+                x9 = buszjegy;
+                return 1;
             }
 
             x1 = choice;
