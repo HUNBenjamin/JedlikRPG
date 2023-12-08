@@ -27,6 +27,7 @@ namespace JedlikRPG
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.Write("1 - Könnyű\n2 - Közepes\n3 - Nehéz\n4 - Extrém\nAdd meg a nehézségi szintet: ");
+            
             int nehezseg = int.Parse(Console.ReadLine());
             Difficulty difficulty = new Difficulty();
             difficulty.NehezsegErtekek(nehezseg);

@@ -13,7 +13,7 @@
 
             //    string[] Items = { "Kaja", "Alkohol", "Pelenka" };
             //    string[] Descriptions = { "-20 éhség", "-20 elegem van", "A nap folyamán nem kell hugyoznod" };
-            //}
+            }
 
             static void statDisplay(int choice, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, List<string> Inventory, int péz)
             {
@@ -103,7 +103,7 @@
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("Nem valami különleges item");
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Az erődet növelő item");
+                            Console.WriteLine("Valamilyen statod jelentősen növelő item");
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.WriteLine("Végleges effektet adó item");
                             Console.ResetColor();
@@ -121,4 +121,3 @@
             }
         }
     }
-}
