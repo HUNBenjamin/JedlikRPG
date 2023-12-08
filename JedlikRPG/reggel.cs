@@ -162,7 +162,7 @@ namespace JedlikRPG
                 }
                 if (choice == 2)
                 {
-                    //Eurobolt(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory);
+                    Eurobolt(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory);
                     Console.Clear();
                     Console.WriteLine($"Helyszín: Szent István út");
                     Console.WriteLine($"Elegem van: {elegemvan}");
