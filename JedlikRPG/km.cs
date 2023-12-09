@@ -98,23 +98,8 @@
                         }
                         if (choice == 4)
                         {
-                            Console.Clear();
-                            Console.WriteLine("Színmagyarázat:");
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("Nem valami különleges item");
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Valamilyen statod jelentősen növelő item");
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("Végleges effektet adó item");
-                            Console.ResetColor();
-                            int i = 1;
-
-                            foreach (string item in Inventory)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.WriteLine($"{i++}. - {item}");
-
-                            }
+                            Item item = new Item();
+                            item.PrintInventory();
                         }
                     }
                 }
