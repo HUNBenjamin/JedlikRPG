@@ -172,7 +172,7 @@ namespace JedlikRPG
         {
             Console.WriteLine("Elnézted a termet, vagy tudod hová jöttél? Üdv a Black Marketen!");
             Console.WriteLine("Mivel szolgálhatunk?");
-            // blackmarket
+            // blackmarket todo
         }
     }
 }
