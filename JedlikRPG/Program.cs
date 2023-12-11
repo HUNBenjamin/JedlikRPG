@@ -48,6 +48,7 @@ namespace JedlikRPG
             Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
             int choice = 0;
             int choice2 = 0;
+            int choice3 = 0;
 
 
             while (gameover != true)
@@ -79,18 +80,20 @@ namespace JedlikRPG
                     Console.WriteLine("Leszálltál a buszról, miután megérkeztél a megállóba. A város látványa mindig szomorúvá tesz, azonban most különösen letaglózónak érzed ezt a helyet, mely egykor szívedet melengette, de már csak az üresség árad belőle.");
                 }
 
-                if (szentistvanut(choice2, busz, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, buszjegy, becsengo, out choice2, out busz, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out buszjegy, out becsengo) == 1)
-                {
-                    gameover = true;
-                }
-                else
+                if (szentistvanut(choice2, busz, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, buszjegy, becsengo, out choice2, out busz, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out buszjegy, out becsengo) == 0)
                 {
                     Console.WriteLine("");
                 }
-
-                if (JedlikA(choice, becsengo, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, out choice, out becsengo, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out osztondij) == 1)
+                else
                 {
                     gameover = true;
+                    break;
+                }
+
+                if (JedlikA(choice3, becsengo, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, out choice, out becsengo, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out osztondij) == 1)
+                {
+                    gameover = true;
+                    break;
                 }
                 else
                 {
