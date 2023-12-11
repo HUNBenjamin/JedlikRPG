@@ -7,15 +7,6 @@ using System.Collections.Generic;
 
 namespace JedlikRPG
 {
-    public static class Item
-    {
-
-        public static string[] Names = { "Taknyos zsebkendő", "Kaja", "Alkohol", "Pelenka" };
-        public static string[] Descriptions = { "Taknyos", "Egyszerű pékáru ami csökkenti az éhséget.", "A subidubi segíti általános jókedvünk megőrzését", "A nap folyamán nem kell hugyoznod" };
-        public static int[] Elegemvan = { 0, 0, -20, 0 };
-        public static int[] Hugyholyag = { 0, 0, 25, 0 };
-        public static int[] Erő = { 0, 5, 5, 0 };
-    }
     internal partial class Program
     {
         static void Main(string[] args)
@@ -27,6 +18,7 @@ namespace JedlikRPG
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.Write("1 - Könnyű\n2 - Közepes\n3 - Nehéz\n4 - Extrém\nAdd meg a nehézségi szintet: ");
+            
             int nehezseg = int.Parse(Console.ReadLine());
             Difficulty difficulty = new Difficulty();
             difficulty.NehezsegErtekek(nehezseg);
