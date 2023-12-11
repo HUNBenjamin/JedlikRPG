@@ -85,8 +85,16 @@ namespace JedlikRPG
                 }
                 else
                 {
-                    Console.WriteLine("Placeholder");
-                    break;
+                    Console.WriteLine("");
+                }
+
+                if (JedlikA(choice, becsengo, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, out choice, out becsengo, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out osztondij) == 1)
+                {
+                    gameover = true;
+                }
+                else
+                {
+                    Console.WriteLine("placeholder");
                 }
             
             }
