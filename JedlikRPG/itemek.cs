@@ -5,12 +5,13 @@ namespace JedlikRPG
 {
     public partial class Item
     {
-        public static string[] Items = { "Kaja", "Alkohol", "Pelenka",/*bufe*/ "Melegszendvics", "Energiaital", "Nyalóka", /*feketepiac*/ };
-        public static string[] Descriptions = { "Egyszerű pékáru ami csökkenti az éhséget.", "A subidubi segíti általános jókedvünk megőrzését", "A nap folyamán nem kell hugyoznod",/*bufe*/ "Elsőre gombásnak hitted, ám ez egy sonkás szendvics.", "Végtére is a szíved és a fogaid nem ingyen lakbérben élnek...", "Az élet amúgyis szopás", /*feketepiac*/  };
-        public static int[] Elegemvan = { 0, -20, 0, /*bufe*/ 0, 0, 0, /*feketepiac*/  };
-        public static int[] Hugyholyag = { 0, 25, 0, /*bufe*/ 0, 15, 0, /*feketepiac*/  };
-        public static int[] Erő = { 5, 5, 0, /*bufe*/ 5, 10, 0 };
-        public static string[] Ritkaság = { "common", "common", "perma", /*bufe*/ "common", "common", "common", /*feketepiac*/  };
+        public static string[] Items = { "Kaja", "Alkohol", "Pelenka",/*bufe*/ "Melegszendvics", "Energiaital", "Nyalóka", /*feketepiac*/ "Xanax", "UTP kábel", "Grántotta" };
+        public static string[] Descriptions = { "Egyszerű pékáru ami csökkenti az éhséget.", "A subidubi segíti általános jókedvünk megőrzését", "A nap folyamán nem kell hugyoznod",/*bufe*/ "Elsőre gombásnak hitted, ám ez egy sonkás szendvics.", "Végtére is a szíved és a fogaid nem ingyen lakbérben élnek...", "Az élet amúgyis szopás", /*feketepiac*/ "Nagyban csökkenti az elegem van statot.", "Ha már másra nem jó a CAT4-es szabvány...cserébe rendkívül fájdalmas", "Ételek királya, királyok étele." };
+        public static int[] Ehseg      = { 20, 0, 0,   /*bufe*/30, -5, 1, /*feketepiac*/ 0, 0, 100 };
+        public static int[] Elegemvan  = { 0, -20, 0, /*bufe*/ 0, 0, 0,  /*feketepiac*/ -60, 0, -5 };
+        public static int[] Hugyholyag = { 0, 25, 0, /*bufe*/ 0, 15, 0, /*feketepiac*/ 0, 0, 0 };
+        public static int[] Erő        = { 5, 5, 0, /*bufe*/ 5, 10, 0, /*feketepiac*/ -5, 40 };
+        public static string[] Ritkaság = { "common", "common", "perma", /*bufe*/ "common", "common", "common", /*feketepiac*/ "boost", "boost", "boost" };
 
         static Dictionary<int, int> inventory = new Dictionary<int, int>();
 
@@ -74,13 +75,5 @@ namespace JedlikRPG
         }
     }
 }
-//                                               black market:
-
-//public string[] Items = { "" };
-//public string[] Descriptions = { "" };
-//public int[] Elegemvan = {  };
-//public int[] Hugyholyag = {  };
-//public int[] Erő = {  };
-//public string[] Ritkaság = { "" };
 
 
