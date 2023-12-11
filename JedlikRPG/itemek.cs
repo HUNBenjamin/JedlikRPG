@@ -1,4 +1,3 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
 using System;
 
 namespace JedlikRPG
