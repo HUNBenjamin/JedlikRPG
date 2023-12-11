@@ -101,9 +101,9 @@ namespace JedlikRPG
                 }
                 else
                 {
-                    while (busz >= 0)
+                    if (busz > 0)
                     {
-                        busz--;
+                        busz = 0;
                     }
                     buszraszallas(choice, busz, elegemvan, ehseg, hugyholyag, ero);
                 }
@@ -140,34 +140,24 @@ namespace JedlikRPG
 
         static int szentistvanut(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, List<string> Inventory, bool gameover, bool buszjegy, int becsengo, out int x1, out int x2, out int x3, out int x4, out int x5, out int x6, out List<string> x7, out bool x8, out bool x9, out int x10)
         {
+            Console.WriteLine($"Helyszín: Szent István út");
+            Console.WriteLine($"Elegem van: {elegemvan}");
+            Console.WriteLine($"Éhség: {ehseg}");
+            Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+            Console.WriteLine($"Erő: {ero}\n\n");
+            Console.WriteLine("\nMegérkeztél a városba. ");
+
             choice = 0;
             while (choice < 1 || choice > 4)
             {
-                Console.Clear();
-
-                Console.WriteLine($"Helyszín: Szent István út");
-                Console.WriteLine($"Elegem van: {elegemvan}");
-                Console.WriteLine($"Éhség: {ehseg}");
-                Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
-                Console.WriteLine($"Erő: {ero}\n\n");
-                Console.WriteLine("\nMegérkeztél a városba. ");
                 Console.WriteLine($"Menj a Jedlikbe, {becsengo} perc múlva becsengetnek.");
                 Console.WriteLine("");
+                Console.WriteLine("\n1 - Lelépsz az úttestre a közeledő kamion elé\n2 - Bemész az euróboltba (5 perc)\n3 - Elsétálsz a Jedlikbe (5 perc)\n4 - Táska megtekintése");
 
-
-                Console.WriteLine("\n1 - Lelépsz az úttestre a közeledő kamion elé\n2 - Bemész az euróboltba (5 perc)\n3 - Elsétálsz a Jedlikbe\n4 - Táska megtekintése");
                 choice = Input("Választás: ");
                 if (choice == 1)
                 {
-                    Console.Clear();
-                    Console.WriteLine($"Helyszín: Szent István út");
-                    Console.WriteLine($"Elegem van: {elegemvan}");
-                    Console.WriteLine($"Éhség: {ehseg}");
-                    Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
-                    Console.WriteLine($"Erő: {ero}\n\n");
-                    Console.WriteLine("");
-                    Console.WriteLine("Nem úszod meg ilyen könnyen");
-                    Console.WriteLine("\n1 - Lelépsz az úttestre a közeledő kamion elé\n2 - Bemész az euróboltba (5 perc)\n3 - Elsétálsz a Jedlikbe (5 perc)\n4 - Táska megtekintése");
+                    kamionEle(elegemvan, ehseg, hugyholyag, ero);
                     choice = 0;
                 }
                 if (choice == 2)
@@ -181,7 +171,6 @@ namespace JedlikRPG
                     Console.WriteLine($"Erő: {ero}\n\n");
                     Console.WriteLine("");
                     Console.WriteLine("Mennyi minden volt itt");
-                    Console.WriteLine("\n1 - Lelépsz az úttestre a közeledő kamion elé\n2 - Bemész az euróboltba (5 perc)\n3 - Elsétálsz a Jedlikbe (5 perc)\n4 - Táska megtekintése");
                     choice = 0;
                     becsengo -= 5;
                 }
@@ -189,7 +178,17 @@ namespace JedlikRPG
                 {
                     Console.WriteLine("Megérkeztél iskoládba. Íme, ezt nevezik pokolnak.");
                     becsengo -= 5;
-                    break;
+                    x1 = choice;
+                    x2 = busz;
+                    x3 = elegemvan;
+                    x4 = ehseg;
+                    x5 = hugyholyag;
+                    x6 = ero;
+                    x7 = Inventory;
+                    x8 = gameover;
+                    x9 = buszjegy;
+                    x10 = becsengo;
+                    return 0;
                 }
                 if (becsengo < 0)
                 {

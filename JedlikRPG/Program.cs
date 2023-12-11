@@ -94,6 +94,7 @@ namespace JedlikRPG
                 else
                 {
                     Console.WriteLine("Placeholder");
+                    break;
                 }
             
             }
