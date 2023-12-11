@@ -33,7 +33,6 @@ namespace JedlikRPG
             int alvas = difficulty.Alvas;
             int busz = difficulty.Busz;
             int osztondij = difficulty.Osztondij;
-            double szorzo = difficulty.Szorzo;
             
             int elegemvan = 0;
             int ehseg = 50;
