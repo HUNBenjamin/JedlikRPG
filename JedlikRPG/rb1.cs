@@ -124,6 +124,18 @@ namespace JedlikRPG
             x1 = osztondij;
             return 0;
         }
+
+        static void kamionEle(int elegemvan, int ehseg, int hugyholyag, int ero)
+        {
+            Console.Clear();
+            Console.WriteLine($"Helyszín: Szent István út");
+            Console.WriteLine($"Elegem van: {elegemvan}");
+            Console.WriteLine($"Éhség: {ehseg}");
+            Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+            Console.WriteLine($"Erő: {ero}\n\n");
+            Console.WriteLine("");
+            Console.WriteLine("Nem úszod meg ilyen könnyen");
+        }
     }
 }
 
