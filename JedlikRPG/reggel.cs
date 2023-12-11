@@ -177,6 +177,7 @@ namespace JedlikRPG
                 if (choice == 3)
                 {
                     Console.WriteLine("Megérkeztél iskoládba. Íme, ezt nevezik pokolnak.");
+                    choice = 3;
                     becsengo -= 5;
                     x1 = choice;
                     x2 = busz;
@@ -190,6 +191,8 @@ namespace JedlikRPG
                     x10 = becsengo;
                     return 0;
                 }
+
+            }
                 if (becsengo < 0)
                 {
                     Console.Clear();
@@ -199,7 +202,7 @@ namespace JedlikRPG
                     Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
                     Console.WriteLine($"Erő: {ero}\n\n");
                     Console.WriteLine("");
-                    Console.WriteLine("\nSajnos túl sokáid vánszorogtál.");
+                    Console.WriteLine("\nSajnos túl sokáig vánszorogtál.");
                     Console.WriteLine("Nem sikerült beérned az iskolába, így túl sok hiányzás miatt kirúgtak.");
                     gameover = true;
                     Console.WriteLine("\nA játéknak vége\n");
@@ -215,8 +218,6 @@ namespace JedlikRPG
                     x10 = becsengo;
                     return 1;
                 }
-
-            }
 
             x1 = choice;
             x2 = busz;
