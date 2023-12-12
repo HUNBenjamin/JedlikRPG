@@ -81,6 +81,7 @@ namespace JedlikRPG
                     Console.WriteLine("Leszálltál a buszról, miután megérkeztél a megállóba. A város látványa mindig szomorúvá tesz, azonban most különösen letaglózónak érzed ezt a helyet, mely egykor szívedet melengette, de már csak az üresség árad belőle.");
                 }
 
+
                 if (szentistvanut(choice2, busz, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, buszjegy, becsengo, osztondij, out choice2, out busz, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out buszjegy, out becsengo) == 0)
                 {
                     Console.WriteLine("");

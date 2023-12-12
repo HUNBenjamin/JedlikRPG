@@ -47,6 +47,43 @@ namespace JedlikRPG
                 ora = "tesi";
             }
 
+
+        static int JedlikA(int choice, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, List<string> Inventory, bool gameover, int osztondij, out int x1, out int x2, out int x3, out int x4, out int x5, out int x6, out List<string> x7, out bool x8, out int x9)
+        {
+            if (becsengo < 0)
+            {
+                gameover = true;
+            }
+
+            bool matek = false;
+            bool angol = false;
+            bool tortenelem = false;
+            bool fizika = false;
+            bool irodalom = false;
+            bool tesi = false;
+
+            string ora = "matek";
+            if (matek == true)
+            {
+                ora = "angol";
+            }
+            if (angol == true)
+            {
+                ora = "történelem";
+            }
+            if (tortenelem == true)
+            {
+                ora = "fizika";
+            }
+            if (fizika == true)
+            {
+                ora = "irodalom";
+            }
+            if (irodalom == true)
+            {
+                ora = "tesi";
+            }
+
             Console.WriteLine("Számos lehetőség van a továbbhaladásra. Annyi éve ide jársz, mégis egyfolytában eltévedsz. Merre tovább?\n");
             choice = 0;
             while (choice < 1 || choice > 3)
@@ -83,6 +120,7 @@ namespace JedlikRPG
                             choice = 0;
                         }
                     }
+
                 }
                 if (choice == 4)
                 {

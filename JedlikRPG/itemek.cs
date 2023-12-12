@@ -4,6 +4,10 @@ using System.Numerics;
 namespace JedlikRPG
 {
     internal partial class Program
+
+namespace JedlikRPG
+{
+    public partial class Item
     {
         public static string[] Items = { "Kaja", "Alkohol", "Pelenka",/*bufe*/ "Melegszendvics", "Energiaital", "Nyalóka", /*feketepiac*/ "Xanax", "UTP kábel", "Grántotta" };
         public static string[] Descriptions = { "Egyszerű pékáru ami csökkenti az éhséget.", "A subidubi segíti általános jókedvünk megőrzését", "A nap folyamán nem kell hugyoznod",/*bufe*/ "Elsőre gombásnak hitted, ám ez egy sonkás szendvics.", "Végtére is a szíved és a fogaid nem ingyen lakbérben élnek...", "Az élet amúgyis szopás", /*feketepiac*/ "Nagyban csökkenti az elegem van statot.", "Ha már másra nem jó a CAT4-es szabvány...cserébe rendkívül fájdalmas", "Ételek királya, királyok étele." };
@@ -40,6 +44,34 @@ namespace JedlikRPG
         public static void PrintInventory(List<List<dynamic>> inventory)
         {
             int index = 0;
+        static Dictionary<int, int> inventory = new Dictionary<int, int>();
+
+        public static void addToInventory(int itemID)
+        {
+            inventory.Add(itemID, 1);
+        }
+
+        public static void RemoveItemFromInventory(int itemID)
+        {
+            inventory.Remove(itemID);
+        }
+
+        public static void usedItem(int itemID, int used)
+        {
+            foreach (var item in inventory)
+            {
+                if (item.Key == itemID)
+                {
+                    inventory[itemID] -= used;
+                    if (inventory[itemID] == 0)
+                    {
+                        RemoveItemFromInventory(itemID);
+                    }
+                }
+            }
+        }
+        public void PrintInventory()
+        {
             Console.Clear();
             Console.WriteLine("Színmagyarázat:");
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -60,6 +92,14 @@ namespace JedlikRPG
         }
 
         static void SetColor(string ritkasag)
+                int itemID = item.Key;
+                SetColor(Ritkaság[itemID]);
+                Console.WriteLine($"Item Name: {Items[itemID]}\n{Descriptions[itemID]}\n Stats: Elegemvan: {Elegemvan[itemID]}\tHugyholyag: {Hugyholyag[itemID]}\tErő: {Erő[itemID]}\nRitkaság: {Ritkaság[itemID]}");
+                Console.ResetColor();
+            }
+        }
+
+        void SetColor(string ritkasag)
         {
             if (ritkasag == "perma")
             {
