@@ -1,21 +1,10 @@
-﻿namespace JedlikRPG
+﻿
+namespace JedlikRPG
 {
     internal partial class Program
     {
-        static void km()
-        {
 
-            //}
-            //public class Item
-            //{
-            //    public string Name = "Taknyos zsebkendő";
-            //    public string Description = "Taknyos.";
-
-            //    string[] Items = { "Kaja", "Alkohol", "Pelenka" };
-            //    string[] Descriptions = { "-20 éhség", "-20 elegem van", "A nap folyamán nem kell hugyoznod" };
-            //}
-
-            static void statDisplay(int choice, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, List<string> Inventory, int péz)
+            static void statDisplay(int choice, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, List<List<dynamic>> Inventory, int péz)
             {
                 Console.WriteLine($"Idő: ");
                 Console.WriteLine($"Elegem van: {elegemvan}");
@@ -25,100 +14,134 @@
                 Console.WriteLine($"Erő: {ero}\n\n");
             }
 
-            static void Eurobolt(int choice, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, List<string> Inventory)
+            static void Eurobolt(int choice, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, List<List<dynamic>> Inventory,int osztondij, out int x1, out int x2, out int x3, out int x4, out bool x5,out List<List<dynamic>> x6, out int x7)
             {
 
-                int péz = 6000;
+                int péz = osztondij;
                 Console.WriteLine($"Beléptél az Euróboltba");
                 Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
-                Console.WriteLine("1 -   Kaja(-20 éhség)\t3000f\n2 - Alkohol (-20 elegem van)\t5000f\n3 - Pelenka (A mai nap folyamán nem kell mosdóba menned)\t15.000f\n4 - Táska megtekintése");
-                while (gameover != true)
+                Console.WriteLine("1 -   Kaja(-20 éhség)\t3000f\n2 - Alkohol (-20 elegem van)\t5000f\n3 - Pelenka (A mai nap folyamán nem kell mosdóba menned)\t15.000f\n4 - Táska megtekintése\n5 - Kilépés az Euróboltból");
+                while (!gameover)
                 {
-                    while (choice < 1 || choice > 3)
+                    while (choice >= 0 || choice <= 5)
                     {
+                        if(choice == 0)
+                        {
+                            Console.WriteLine($"Beléptél az Euróboltba");
+                            Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
+                            Console.WriteLine("1 -   Kaja(-20 éhség)\t3000f\n2 - Alkohol (-20 elegem van)\t5000f\n3 - Pelenka (A mai nap folyamán nem kell mosdóba menned)\t15.000f\n4 - Táska megtekintése\n5 - Kilépés az Euróboltból");
+                        }
                         choice = Input("Választás: ");
-                        if (choice == 1 && péz > 3000)
+
+                        if (choice == 1)
                         {
-                            Console.Clear();
+                            if(péz >= 3000)
+                            {
+                                Console.Clear();
 
-                            statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
+                                statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
 
-                            Console.WriteLine("\nMegvetted az ételt.");
-                            péz = péz - 3000;
-                            Inventory.Add("Étel");
+                                Console.WriteLine("\nMegvetted az ételt.");
+                                péz -= 3000;
+                                Inventory.Add(new List<dynamic> { "Kaja", 1 });
+                                
+                        }
+                            else{
+                                Console.Clear();
+                                Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 3000f");
+                            }
                             choice = 0;
                         }
-                        else
+ 
+                        if (choice == 2)
                         {
-                            Console.Clear();
-                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 3000f");
-                        }
-                        if (choice == 2 && péz > 6000)
-                        {
-                            Console.Clear();
 
-                            Console.WriteLine($"Idő: ");
-                            Console.WriteLine($"Elegem van: {elegemvan}");
-                            Console.WriteLine($"Éhség: {ehseg}");
-                            Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
-                            Console.WriteLine($"Egyenleged: {péz}");
-                            Console.WriteLine($"Erő: {ero}\n\n");
+                            if (péz >= 6000)
+                            {
+                                Console.Clear();
 
-                            Console.WriteLine("\nEgy üveg vodkával nehezebb lett a táskád.");
-                            Inventory.Add("Alkohol");
-                            Console.WriteLine("");
+                                Console.WriteLine($"Idő: ");
+                                Console.WriteLine($"Elegem van: {elegemvan}");
+                                Console.WriteLine($"Éhség: {ehseg}");
+                                Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+                                Console.WriteLine($"Egyenleged: {péz}");
+                                Console.WriteLine($"Erő: {ero}\n\n");
+
+                                Console.WriteLine("\nEgy üveg vodkával nehezebb lett a táskád.");
+                                Inventory.Add(new List<dynamic> { "Alkohol", 1 });
+                                Console.WriteLine("");
+                                
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 6000f");
+                            }
                             choice = 0;
+                            }
+
+                        if (choice == 3)
+                        {
+
+                        if (péz > 15000)
+                            {
+                                Console.Clear();
+
+                                Console.WriteLine($"Idő: ");
+                                Console.WriteLine($"Elegem van: {elegemvan}");
+                                Console.WriteLine($"Éhség: {ehseg}");
+                                Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+                                Console.WriteLine($"Egyenleged: {péz}");
+                                Console.WriteLine($"Erő: {ero}\n\n");
+
+                                Console.WriteLine("\nEltetted a pelust");
+                                Inventory.Add(new List<dynamic> { "Pelenka", 1 });
+                                Console.WriteLine("");
                         }
                         else
                         {
                             Console.Clear();
                             Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 6000f");
                         }
-                        if (choice == 3 && péz > 15000)
-                        {
-                            Console.Clear();
-
-                            Console.WriteLine($"Idő: ");
-                            Console.WriteLine($"Elegem van: {elegemvan}");
-                            Console.WriteLine($"Éhség: {ehseg}");
-                            Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
-                            Console.WriteLine($"Egyenleged: {péz}");
-                            Console.WriteLine($"Erő: {ero}\n\n");
-
-                            Console.WriteLine("\nEltetted a pelust");
-                            Inventory.Add("Pelenka");
-                            Console.WriteLine("");
-                            choice = 0;
+                        choice = 0;
 
                         }
-                        else
-                        {
-                            Console.Clear();
-                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 6000f");
-                        }
+
                         if (choice == 4)
                         {
-                            Console.Clear();
-                            Console.WriteLine("Színmagyarázat:");
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("Nem valami különleges item");
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Az erődet növelő item");
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("Végleges effektet adó item");
-                            Console.ResetColor();
-                            int i = 1;
-
-                            foreach (string item in Inventory)
+                            int altChoice = -1;
+                            while(altChoice == -1)
                             {
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.WriteLine($"{i++}. - {item}");
-
+                                PrintInventory(Inventory);
+                                Console.WriteLine("0. Kilépés");
+                                altChoice = Input("Választás: ");
+                            }
+                            if (altChoice == 0) break ;
+                            else
+                            {
+                                UseItem(Inventory, Inventory[altChoice-1][0],ehseg,elegemvan,hugyholyag,ero,out ehseg,out elegemvan,out hugyholyag,out ero,out Inventory);
                             }
                         }
+                    if (choice == 5)
+                    {
+                        x1 = elegemvan;
+                        x2 = ehseg;
+                        x3 = hugyholyag;
+                        x4 = ero;
+                        x5 = gameover;
+                        x6 = Inventory;
+                        x7 = péz;
+                        return;
+                    }
                     }
                 }
+                x1 = elegemvan;
+                x2 = ehseg;
+                x3 = hugyholyag;
+                x4 = ero;
+                x5 = gameover;
+                x6 = Inventory;
+                x7 = péz;
             }
         }
     }
-}

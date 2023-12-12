@@ -8,16 +8,12 @@ namespace JedlikRPG
 {
     internal partial class Program
     {
-        static void reggel()
-        {
 
-
-        }
-
-        static int reggel(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, List<string> Inventory, bool gameover, bool buszjegy, out int x1, out int x2, out int x3, out int x4, out int x5, out int x6, out List<string> x7, out bool x8, out bool x9)
+        static int reggel(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, List<List<dynamic>> Inventory, bool gameover, bool buszjegy, out int x1, out int x2, out int x3, out int x4, out int x5, out int x6, out List<List<dynamic>> x7, out bool x8, out bool x9)
         {
             while (choice < 1 || choice > 4)
             {
+                if(choice == 0) Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
                 choice = Input("Választás: ");
                 if (choice == 1)
                 {
@@ -26,14 +22,14 @@ namespace JedlikRPG
                     vizeles(choice, busz, elegemvan, ehseg, hugyholyag, ero);
                     choice = 0;
                 }
-                else if (choice == 2)
+                if (choice == 2)
                 {
                     ehseg -= 25;
                     busz -= 15;
                     reggelizes(choice, busz, elegemvan, ehseg, hugyholyag, ero);
                     choice = 0;
                 }
-                else if (choice == 3)
+                if (choice == 3)
                 {
                     busz -= 3;
                     buszSeta(choice, busz, elegemvan, ehseg, hugyholyag, ero);
@@ -49,11 +45,18 @@ namespace JedlikRPG
                 }
                 if (choice == 4)
                 {
-                    foreach (string item in Inventory)
+                    int altChoice = -1;
+                    while (altChoice == -1)
                     {
-                        Console.WriteLine(item);
+                        PrintInventory(Inventory);
+                        Console.WriteLine("0. Kilépés");
+                        altChoice = Input("Választás: ");
                     }
-                    choice = 0;
+                    if (altChoice == 0) choice = 0;
+                    else
+                    {
+                        UseItem(Inventory, Inventory[altChoice - 1][0], ehseg, elegemvan, hugyholyag, ero, out ehseg, out elegemvan, out hugyholyag, out ero, out Inventory);
+                    }
                 }
                 if (busz < 0)
                 {
@@ -86,7 +89,7 @@ namespace JedlikRPG
             return 0;
         }
 
-        static int megallo(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, List<string> Inventory, bool gameover, bool buszjegy, out int x1, out int x2, out int x3, out int x4, out int x5, out int x6, out List<string> x7, out bool x8, out bool x9)
+        static int megallo(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, List<List<dynamic>> Inventory, bool gameover, bool buszjegy, out int x1, out int x2, out int x3, out int x4, out int x5, out int x6, out List<List<dynamic>> x7, out bool x8, out bool x9)
         {
             while (choice < 1 || choice > 2)
             {
@@ -138,7 +141,7 @@ namespace JedlikRPG
             return 0;
         }
 
-        static int szentistvanut(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, List<string> Inventory, bool gameover, bool buszjegy, int becsengo, out int x1, out int x2, out int x3, out int x4, out int x5, out int x6, out List<string> x7, out bool x8, out bool x9, out int x10)
+        static int szentistvanut(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, List<List<dynamic>> Inventory, bool gameover, bool buszjegy, int becsengo,int osztondij, out int x1, out int x2, out int x3, out int x4, out int x5, out int x6, out List<List<dynamic>> x7, out bool x8, out bool x9, out int x10)
         {
             Console.WriteLine($"Helyszín: Szent István út");
             Console.WriteLine($"Elegem van: {elegemvan}");
@@ -148,7 +151,7 @@ namespace JedlikRPG
             Console.WriteLine("\nMegérkeztél a városba. ");
 
             choice = 0;
-            while (choice < 1 || choice > 4)
+            while (choice >= 1 || choice <= 4)
             {
                 Console.WriteLine($"Menj a Jedlikbe, {becsengo} perc múlva becsengetnek.");
                 Console.WriteLine("");
@@ -162,7 +165,7 @@ namespace JedlikRPG
                 }
                 if (choice == 2)
                 {
-                    //Eurobolt(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory);
+                    Eurobolt(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory,osztondij,out elegemvan,out ehseg,out hugyholyag,out ero,out gameover,out Inventory, out osztondij);
                     Console.Clear();
                     Console.WriteLine($"Helyszín: Szent István út");
                     Console.WriteLine($"Elegem van: {elegemvan}");
@@ -177,6 +180,7 @@ namespace JedlikRPG
                 if (choice == 3)
                 {
                     Console.WriteLine("Megérkeztél iskoládba. Íme, ezt nevezik pokolnak.");
+                    choice = 3;
                     becsengo -= 5;
                     x1 = choice;
                     x2 = busz;
@@ -190,6 +194,23 @@ namespace JedlikRPG
                     x10 = becsengo;
                     return 0;
                 }
+                if (choice == 4)
+                {
+                    int altChoice = -1;
+                    while (altChoice == -1)
+                    {
+                        PrintInventory(Inventory);
+                        Console.WriteLine("0. Kilépés");
+                        altChoice = Input("Választás: ");
+                    }
+                    if (altChoice == 0) choice = 0;
+                    else
+                    {
+                        UseItem(Inventory, Inventory[altChoice - 1][0], ehseg, elegemvan, hugyholyag, ero, out ehseg, out elegemvan, out hugyholyag, out ero, out Inventory);
+                    }
+                }
+
+            }
                 if (becsengo < 0)
                 {
                     Console.Clear();
@@ -199,7 +220,7 @@ namespace JedlikRPG
                     Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
                     Console.WriteLine($"Erő: {ero}\n\n");
                     Console.WriteLine("");
-                    Console.WriteLine("\nSajnos túl sokáid vánszorogtál.");
+                    Console.WriteLine("\nSajnos túl sokáig vánszorogtál.");
                     Console.WriteLine("Nem sikerült beérned az iskolába, így túl sok hiányzás miatt kirúgtak.");
                     gameover = true;
                     Console.WriteLine("\nA játéknak vége\n");
@@ -215,8 +236,6 @@ namespace JedlikRPG
                     x10 = becsengo;
                     return 1;
                 }
-
-            }
 
             x1 = choice;
             x2 = busz;

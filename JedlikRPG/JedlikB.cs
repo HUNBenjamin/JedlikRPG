@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JedlikRPG
 {
-    internal partial class JedlikB
+    internal partial class Program
     {
         static void JedlikBepulet()
         {
@@ -39,39 +39,55 @@ namespace JedlikRPG
         }
         static void Tesi()
         {
+            Random random = new Random();
+            int adibaIttvan = random.Next(1, 3);
+            int oltozoSzag = random.Next(1, 6);
             Console.WriteLine("Na irány öltözni, Németh Ádám már nagyon vár rád!");
-            Console.WriteLine("Németh Ádám szokásos széles mosolyával fogad tesiórán.");
-            Console.WriteLine("Megdícséred a cipőjét? Biztos értékelné.");
-            Console.WriteLine("1 - Persze, legjobb tanár\n2 - Áh, az enyém úgyis jobb");
-            Console.Write("Választás: ");
-            int choice = int.Parse(Console.ReadLine());
-            while (choice != 1 || choice != 2)
+            if (oltozoSzag == 3)
             {
-                choice = int.Parse(Console.ReadLine());
-                if (choice == 1)
+                Console.WriteLine("Valaki megint összekeverte a zuhanyzót a vécével, ezért az így keletkezett szagtól eszméleted vesztetted.");
+            }
+            if (adibaIttvan == 1)
+            {
+                Console.WriteLine("Németh Ádám szokásos széles mosolyával fogad tesiórán.");
+                Console.WriteLine("Megdícséred a cipőjét? Biztos értékelné.");
+                Console.WriteLine("1 - Persze, legjobb tanár\n2 - Áh, az enyém úgyis jobb");
+                Console.Write("Választás: ");
+                int choice = int.Parse(Console.ReadLine());
+                while (choice != 1 || choice != 2)
                 {
-                    Console.WriteLine("Megdícsérted a lépőit, és bár huszadjára van ugyanaz rajta , ugyanakkora mosolyt csaltál az arcára, mint első alkalommal.");
-                    // elegemvan -= 5
-                }
-                else if (choice == 2)
-                {
-                    Console.WriteLine("Bár nem változtatott volna sokmindenen, azért alap lett volna megdícsérni a tanár úr csukáit.");
+                    choice = int.Parse(Console.ReadLine());
+                    if (choice == 1)
+                    {
+                        Console.WriteLine("Megdícsérted a lépőit, és bár huszadjára van ugyanaz rajta , ugyanakkora mosolyt csaltál az arcára, mint első alkalommal.");
+                        // elegemvan -= 5
+                    }
+                    else if (choice == 2)
+                    {
+                        Console.WriteLine("Bár nem változtatott volna sokmindenen, azért alap lett volna megdícsérni a tanár úr csukáit.");
+                    }
                 }
             }
-            Console.WriteLine("Amíg a többiek rúgják a bőrt, nincs kedved megemelni a nehezet a szertárban? Nincs olyan, hogy valaki túl erős.");
-            Console.WriteLine("1 - Beach body, here I come\n2 - Öltöznék inkább vissza");
-            Console.Write("Választás: ");
-            choice = int.Parse(Console.ReadLine());
-            while (choice != 1 || choice != 2)
+            else if (adibaIttvan == 2)
             {
-                choice = int.Parse(Console.ReadLine());
-                if (choice == 1)
+                Console.WriteLine("Hát Ádibá már megint Pécsett tanulgat, de ne aggódj, nem lesz helyettesítés. Addig majd fociznak a többiek.");
+            }
+            Console.WriteLine("Amíg a többiek rúgják a bőrt, nincs kedved megemelni a nehezet a szertárban? Nincs olyan, hogy valaki túl erős.");
+            Console.WriteLine("1 - Beach body, here I come\n2 - Inkább átöltöznék");
+            Console.Write("Választás: ");
+            int choice2 = int.Parse(Console.ReadLine());
+            choice2 = int.Parse(Console.ReadLine());
+            while (choice2 != 1 || choice2 != 2)
+            {
+                choice2 = int.Parse(Console.ReadLine());
+                if (choice2 == 1)
                 {
-                    Console.WriteLine("Jónéhányszor felemelted a súlyt, és bár bűzlik tőle a kezed, attól még erősebb lettél.");
+                    Console.WriteLine("Jónéhányszor felemelted a súlyokat, és bár bűzlik tőle a kezed, attól még erősebb lettél.");
+                    // ero += 5
                 }
-                else if (choice == 2)
+                else if (choice2 == 2)
                 {
-                    Console.WriteLine("Így előbb elmehettél öltözni, de most fél óráig csak nézel ki a fejedből, bármi normális gondolat nélkül.");
+                    Console.WriteLine("Így előbb elmehettél öltözni, de most fél óráig csak nézel ki a fejedből, bármi világmegváltó gondolat nélkül.");
                 }
             }
         }
@@ -95,7 +111,7 @@ namespace JedlikRPG
                     Console.WriteLine("Új rekordot állítottál volna fel a játékban, de túl sok volt egymáson a citrom.");
                 }
             }
-            Console.WriteLine("Striderné csak megérkezett, és munkához is lát.\nScreenTask működik, úgyhogy talán nem maradsz le, már ha csinálsz valamit.\nAz egyetlen feladatod csak kussban végigülni az órát, és néha csinálhatnád az órai munkát is.");
+            Console.WriteLine("Striderné csak megérkezett, és munkához is lát.\nScreenTask működik, úgyhogy talán nem maradsz le, már ha persze csinálsz valamit.\nAz egyetlen feladatod csak kussban végigülni az órát, és néha csinálhatnád az órai munkát is.");
             // elegemvan += 5
             // if elegemvan < 100
             Console.WriteLine("A könnyebik órákhoz tartozott, de akkor is túlélted.");
@@ -143,17 +159,20 @@ namespace JedlikRPG
                 if (choice == 1)
                 {
                     Console.WriteLine("Na hol kötöttél ki? Mi se tudjuk...");
+                    // random shortcut
                 }
                 else if (choice == 2)
                 {
                     Console.WriteLine("Én se bíztam volna a kapuban, gondolj bele, milyen lett volna, ha a vécébe kerültél volna, mikor Tüncike épp pókhálózza a kéztörlő dobozokat...");
                 }
             }
+            // oriaspatkany
         }
         static void Padlas()
         {
             Console.WriteLine("Elnézted a termet, vagy tudod hová jöttél? Üdv a Black Marketen!");
             Console.WriteLine("Mivel szolgálhatunk?");
+            // blackmarket todo
         }
     }
 }
