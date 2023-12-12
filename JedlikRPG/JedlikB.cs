@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ namespace JedlikRPG
 {
     internal partial class Program
     {
-        static void JedlikBepulet()
+        static void JedlikBepulet(int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, List<List<dynamic>> Inventory, bool gameover, int osztondij, Difficulty difficulty)
         {
             Console.WriteLine("Csak nem a B épületben lesz órád?\nMerre tartasz?\n1 - Tesi\n2 - Adatbázis\n3 - Digitális technika\n4 - Pince\n5 - Padlás (meglepetés)");
             Console.Write("Választás: ");
@@ -17,15 +18,15 @@ namespace JedlikRPG
             {
                 if (choice == 1)
                 {
-                    Tesi();
+                    Tesi(elegemvan,ero,out elegemvan,out ero);
                 }
                 else if (choice == 2)
                 {
-                    AdatB();
+                    AdatB(elegemvan,gameover,out elegemvan,out gameover);
                 }
                 else if (choice == 3)
                 {
-                    DigTech();
+                    DigTech(elegemvan,gameover, out elegemvan, out gameover);
                 }
                 else if (choice == 4)
                 {
@@ -37,7 +38,7 @@ namespace JedlikRPG
                 }
             }
         }
-        static void Tesi()
+        static void Tesi(int elegemvan, int ero, out int x1, out int x2)
         {
             Random random = new Random();
             int adibaIttvan = random.Next(1, 3);
@@ -60,7 +61,7 @@ namespace JedlikRPG
                     if (choice == 1)
                     {
                         Console.WriteLine("Megdícsérted a lépőit, és bár huszadjára van ugyanaz rajta , ugyanakkora mosolyt csaltál az arcára, mint első alkalommal.");
-                        // elegemvan -= 5
+                        elegemvan -= 5;
                     }
                     else if (choice == 2)
                     {
@@ -83,15 +84,17 @@ namespace JedlikRPG
                 if (choice2 == 1)
                 {
                     Console.WriteLine("Jónéhányszor felemelted a súlyokat, és bár bűzlik tőle a kezed, attól még erősebb lettél.");
-                    // ero += 5
+                    ero += 5;
                 }
                 else if (choice2 == 2)
                 {
                     Console.WriteLine("Így előbb elmehettél öltözni, de most fél óráig csak nézel ki a fejedből, bármi világmegváltó gondolat nélkül.");
                 }
             }
+            x1 = elegemvan;
+            x2 = ero;
         }
-        static void AdatB()
+        static void AdatB(int elegemvan, bool gameover, out int x1,out bool x2)
         {
             Console.WriteLine("Becsöngettek, úgyhogy már csak 15 perc van a tanárnő érkezéséig.");
             Console.WriteLine("Mit teszel, hogy elüsd az időt?");
@@ -104,7 +107,7 @@ namespace JedlikRPG
                 if (choice == 1)
                 {
                     Console.WriteLine("Rákattintottál a \"Csak 3 hozzávaló, 15 perc és kész a finom\" videóra, és csorgattad rá a nyáladat, tudván, hogy úgyse fogod sohase elkészíteni.");
-                    // elegemvan -= 5
+                    elegemvan -= 5;
                 }
                 else if (choice == 2)
                 {
@@ -112,11 +115,17 @@ namespace JedlikRPG
                 }
             }
             Console.WriteLine("Striderné csak megérkezett, és munkához is lát.\nScreenTask működik, úgyhogy talán nem maradsz le, már ha persze csinálsz valamit.\nAz egyetlen feladatod csak kussban végigülni az órát, és néha csinálhatnád az órai munkát is.");
-            // elegemvan += 5
+            elegemvan += 5;
             // if elegemvan < 100
-            Console.WriteLine("A könnyebik órákhoz tartozott, de akkor is túlélted.");
+            if (elegemvan < 100)
+            {
+                Console.WriteLine("A könnyebik órákhoz tartozott, de akkor is túlélted.");
+                gameover = true;
+            }
+            x1 = elegemvan;
+            x2 = gameover;
         }
-        static void DigTech()
+        static void DigTech(int elegemvan,bool gameover, out int x1, out bool x2)
         {
             Console.WriteLine("Ez az óra csak fél órát vesz igénybe, mert csak annyi marad, mire bekapcsolnak a gépek a B7-ben.");
             Console.WriteLine("Próbálj meg lenyugodni, ez az óra sokkal többnek érződik.");
@@ -129,21 +138,26 @@ namespace JedlikRPG
                 if (choice == 1)
                 {
                     Console.WriteLine("Két oldal be is telt a füzetedben. Lehet, hogy minimálbérért fogsz dolgozni az elkövetkezendő harminc évben, de legalább tudod, hogy a konjuktív szabályos alak a maxtermek és kapcsolatából áll.");
-                    // elegemvan += 10
+                    elegemvan += 10;
                 }
                 else if (choice == 2)
                 {
                     Console.WriteLine("Beállítottad a színesbőrű emojikat, és 5 percen keresztül likeokat spammeltél. Sokkal jobban érzed magad.");
-                    // elegemvan -= 5
+                    elegemvan -= 5;
                 }
                 else if (choice == 3)
                 {
                     Console.WriteLine("Létrehoztál egy Jamboardot, és beillesztetted a slozaik.jpg-t.");
-                    // elegemvan -= 5
+                    elegemvan -= 5;
                 }
             }
-            // if elegemvan < 100
-            Console.WriteLine("Sikeresen túlélted ezt az órát, minden tiszteletem.");
+            if (elegemvan < 100)
+            {
+                Console.WriteLine("Sikeresen túlélted ezt az órát, minden tiszteletem.");
+                gameover = true;
+            }
+            x1 = elegemvan;
+            x2 = gameover;
         }
         static void Pince()
         {

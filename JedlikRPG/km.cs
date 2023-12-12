@@ -1,10 +1,10 @@
+﻿
 namespace JedlikRPG
 {
     internal partial class Program
     {
 
-
-            static void statDisplay(int choice, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, List<string> Inventory, int péz)
+            static void statDisplay(int choice, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, List<List<dynamic>> Inventory, int péz)
             {
                 Console.WriteLine($"Idő: ");
                 Console.WriteLine($"Elegem van: {elegemvan}");
@@ -121,8 +121,6 @@ namespace JedlikRPG
                             {
                                 UseItem(Inventory, Inventory[altChoice-1][0],ehseg,elegemvan,hugyholyag,ero,out ehseg,out elegemvan,out hugyholyag,out ero,out Inventory);
                             }
-                            Item item = new Item();
-                            item.PrintInventory();
                         }
                     if (choice == 5)
                     {

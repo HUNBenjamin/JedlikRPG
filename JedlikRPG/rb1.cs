@@ -96,7 +96,7 @@ namespace JedlikRPG
 
         }
 
-        static int blicceles(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, bool jegy, int osztondij, out int x1)
+        static int blicceles(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero, bool jegy, int osztondij,Difficulty difficulty, out int x1)
         {
             Random rand = new Random();
 
@@ -108,12 +108,11 @@ namespace JedlikRPG
             Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
             Console.WriteLine($"Erő: {ero}\n\n");
 
-            int blicc = rand.Next(1, 11);
-            if (jegy == false && blicc == 6)
+            double blicc = rand.NextDouble();
+            if (jegy == false && blicc <= difficulty.Esely) 
             {
                 Console.WriteLine("Felszállt egy jegyellenőr és mivel nem tudtál neki vonaljegyet mutatni 8000Ft-ra büntetett");
-                osztondij -= 4000; // 2x-es szorzó van rajta idk 🤷‍ 4000 == 8000 bünti 💀
-                x1 = osztondij;
+                x1 = osztondij - 8000;
                 return 1;
             }
             x1 = osztondij;

@@ -69,10 +69,10 @@ namespace JedlikRPG
                 }
                 else
                 {
-                    blicceles(choice, busz, elegemvan, ehseg, hugyholyag, ero, buszjegy, osztondij, out osztondij);
+                    blicceles(choice, busz, elegemvan, ehseg, hugyholyag, ero, buszjegy, osztondij,difficulty, out osztondij);
                 }
 
-                if (blicceles(choice, busz, elegemvan, ehseg, hugyholyag, ero, buszjegy, osztondij, out osztondij) == 1)
+                if (blicceles(choice, busz, elegemvan, ehseg, hugyholyag, ero, buszjegy, osztondij,difficulty, out osztondij) == 1)
                 {
                     Console.WriteLine("Leszálltál a buszról, miután megérkeztél a megállóba. A város látványa mindig szomorúvá tesz, azonban most különösen letaglózónak érzed ezt a helyet, mely egykor szívedet melengette, de már csak az üresség árad belőle.");
                 }
@@ -80,7 +80,6 @@ namespace JedlikRPG
                 {
                     Console.WriteLine("Leszálltál a buszról, miután megérkeztél a megállóba. A város látványa mindig szomorúvá tesz, azonban most különösen letaglózónak érzed ezt a helyet, mely egykor szívedet melengette, de már csak az üresség árad belőle.");
                 }
-
 
                 if (szentistvanut(choice2, busz, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, buszjegy, becsengo, osztondij, out choice2, out busz, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out buszjegy, out becsengo) == 0)
                 {
@@ -92,7 +91,7 @@ namespace JedlikRPG
                     break;
                 }
 
-                if (JedlikA(choice3, becsengo, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, out choice, out becsengo, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out osztondij) == 1)
+                if (JedlikA(choice3, becsengo, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij,difficulty, out choice, out becsengo, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out osztondij) == 1)
                 {
                     gameover = true;
                     break;
