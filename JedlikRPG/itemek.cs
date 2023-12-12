@@ -10,7 +10,7 @@ namespace JedlikRPG
         public static int[] Ehseg      = { 20, 0, 0,   /*bufe*/30, -5, 1, /*feketepiac*/ 0, 0, -100 };
         public static int[] Elegemvan  = { 0, -20, 0, /*bufe*/ 0, 0, 0,  /*feketepiac*/ -60, 0, -5 };
         public static int[] Hugyholyag = { 0, 25, 0, /*bufe*/ 0, 15, 0, /*feketepiac*/ 0, 0, 0 };
-        public static int[] Erő        = { 5, 5, 0, /*bufe*/ 5, 10, 0, /*feketepiac*/ -5, 40 };
+        public static int[] Erő        = { 5, 5, 0, /*bufe*/ 5, 10, 0, /*feketepiac*/ -5, 40, 18 };
         public static string[] Ritkaság = { "common", "common", "perma", /*bufe*/ "common", "common", "common", /*feketepiac*/ "boost", "boost", "boost" };
 
         public static void UseItem(List<List<dynamic>> inventory, string itemToUse,int ehseg,int elegemvan, int hugyholyag,int ero,out int x1, out int x2, out int x3, out int x4, out List<List<dynamic>> x5)
