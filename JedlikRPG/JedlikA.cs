@@ -64,12 +64,12 @@ namespace JedlikRPG
                 }
                 if (choice == 2)
                 {
-                    if (hatsoKapu(choice, becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo) == 0)
+                    if (hatsoKapu(becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo) == 0)
                     {
                         choice = 0;
                     }
 
-                    else if (hatsoKapu(choice, becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo) == 1)
+                    else if (hatsoKapu(becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo) == 1)
                     {
                         JedlikBepulet(becsengo, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, difficulty);
                     }
@@ -178,8 +178,9 @@ namespace JedlikRPG
             return 0;
         }
 
-        static int hatsoKapu(int choice, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, out int x1)
+        static int hatsoKapu(int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, out int x1)
         {
+            int choice = 0;
             while (choice < 1 || choice > 2)
             {
                 Console.WriteLine("\n1 - Tovább a B épület felé (1 perc)\n2 - Vissza a folyosóra\n");
