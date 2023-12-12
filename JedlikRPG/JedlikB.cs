@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JedlikRPG
 {
-    internal partial class JedlikB
+    internal partial class Program
     {
         static void JedlikBepulet()
         {

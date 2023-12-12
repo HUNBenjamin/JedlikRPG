@@ -11,6 +11,7 @@ namespace JedlikRPG
     {
         static void Main(string[] args)
         {
+
             Console.ForegroundColor = ConsoleColor.Blue;
 
             Console.WriteLine("   __     ______     _____     __         __     __  __     ______     ______   ______    \r\n  /\\ \\   /\\  ___\\   /\\  __-.  /\\ \\       /\\ \\   /\\ \\/ /    /\\  == \\   /\\  == \\ /\\  ___\\   \r\n _\\_\\ \\  \\ \\  __\\   \\ \\ \\/\\ \\ \\ \\ \\____  \\ \\ \\  \\ \\  _\"-.  \\ \\  __<   \\ \\  _-/ \\ \\ \\__ \\  \r\n/\\_____\\  \\ \\_____\\  \\ \\____-  \\ \\_____\\  \\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\ \\_\\  \\ \\_\\    \\ \\_____\\ \r\n\\/_____/   \\/_____/   \\/____/   \\/_____/   \\/_/   \\/_/\\/_/   \\/_/ /_/   \\/_/     \\/_____/ \r\n");
@@ -33,7 +34,8 @@ namespace JedlikRPG
             int becsengo = 30;
             bool buszjegy = false;
             bool gameover = false;
-            List<string> Inventory = new List<string>();
+
+            List<List<dynamic>> Inventory = new List<List<dynamic>>();
 
             Console.WriteLine($"Helyszín: Otthon ");
             Console.WriteLine($"Elegem van: {elegemvan}");
@@ -45,7 +47,7 @@ namespace JedlikRPG
             Console.WriteLine($"Készülj el, a busz {busz} perc múlva érkezik");
             Console.WriteLine("");
 
-            Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
+            // Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
             int choice = 0;
             int choice2 = 0;
             int choice3 = 0;
@@ -72,7 +74,6 @@ namespace JedlikRPG
 
                 if (blicceles(choice, busz, elegemvan, ehseg, hugyholyag, ero, buszjegy, osztondij, out osztondij) == 1)
                 {
-                    osztondij -= 8000;
                     Console.WriteLine("Leszálltál a buszról, miután megérkeztél a megállóba. A város látványa mindig szomorúvá tesz, azonban most különösen letaglózónak érzed ezt a helyet, mely egykor szívedet melengette, de már csak az üresség árad belőle.");
                 }
                 else
@@ -80,7 +81,8 @@ namespace JedlikRPG
                     Console.WriteLine("Leszálltál a buszról, miután megérkeztél a megállóba. A város látványa mindig szomorúvá tesz, azonban most különösen letaglózónak érzed ezt a helyet, mely egykor szívedet melengette, de már csak az üresség árad belőle.");
                 }
 
-                if (szentistvanut(choice2, busz, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, buszjegy, becsengo, out choice2, out busz, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out buszjegy, out becsengo) == 0)
+
+                if (szentistvanut(choice2, busz, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, buszjegy, becsengo, osztondij, out choice2, out busz, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out buszjegy, out becsengo) == 0)
                 {
                     Console.WriteLine("");
                 }

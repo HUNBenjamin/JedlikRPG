@@ -9,11 +9,6 @@ namespace JedlikRPG
 {
     internal partial class Program
     {
-        static void rb1()
-        {
-
-
-        }
         static int Input(string text)
         {
             int value;
@@ -38,7 +33,7 @@ namespace JedlikRPG
             Console.WriteLine($"Készülj el, a busz {busz} perc múlva érkezik");
             Console.WriteLine("");
 
-            Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
+            //Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
         }
 
         static void reggelizes(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero)
@@ -54,7 +49,7 @@ namespace JedlikRPG
             Console.WriteLine($"Készülj el, a busz {busz} perc múlva érkezik");
             Console.WriteLine("");
 
-            Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
+           // Console.WriteLine("1 - Elmész vizelni (2 perc)\n2 - Elfogyasztod a reggelid (15 perc)\n3 - Elmész a buszmegállóba (3 perc)\n4 - Táska megtekintése");
         }
 
         static void buszSeta(int choice, int busz, int elegemvan, int ehseg, int hugyholyag, int ero)
@@ -117,7 +112,7 @@ namespace JedlikRPG
             if (jegy == false && blicc == 6)
             {
                 Console.WriteLine("Felszállt egy jegyellenőr és mivel nem tudtál neki vonaljegyet mutatni 8000Ft-ra büntetett");
-                osztondij -= 8000;
+                osztondij -= 4000; // 2x-es szorzó van rajta idk 🤷‍ 4000 == 8000 bünti 💀
                 x1 = osztondij;
                 return 1;
             }
