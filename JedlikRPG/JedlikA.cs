@@ -11,7 +11,7 @@ namespace JedlikRPG
 {
     internal partial class Program
     {
-        static int JedlikA(int choice, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, List<List<dynamic>> Inventory, bool gameover, int osztondij,Difficulty difficulty, out int x1, out int x2, out int x3, out int x4, out int x5, out int x6, out List<List<dynamic>> x7, out bool x8, out int x9)
+        static int JedlikA(int choice, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, List<List<dynamic>> Inventory, bool gameover, int osztondij, Difficulty difficulty, out int x1, out int x2, out int x3, out int x4, out int x5, out int x6, out List<List<dynamic>> x7, out bool x8, out int x9)
         {
             if (becsengo < 0)
             {
@@ -76,17 +76,34 @@ namespace JedlikRPG
                 }
                 if (choice == 3)
                 {
-                    if (folyoso(becsengo,difficulty, out becsengo) == 11)
+                    if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 1)
                     {
-                        if (ebedlo(osztondij, choice, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover,difficulty, out osztondij, out choice, out becsengo, out gameover) == 1)
-                        {
-                            gameover = true;
-                            break;
-                        }
-                        else
-                        {
-                            choice = 0;
-                        }
+                        //TODO orvosi szoba
+                    }
+                    else if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 3)
+                    {
+                        //angolTerem
+                    }
+                    else if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 3)
+                    {
+                        folyoso(ora, becsengo, difficulty, out becsengo);
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
+
+                    if (folyoso(ora, becsengo, difficulty, out becsengo) == 11)
+                    {
+                    if (ebedlo(osztondij, choice, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out osztondij, out choice, out becsengo, out gameover) == 1)
+                    {
+                        gameover = true;
+                        break;
+                    }
+                    else
+                    {
+                        choice = 0;
+                    }
                     }
                 }
                 if (choice == 4)
@@ -216,7 +233,7 @@ namespace JedlikRPG
 
         }
 
-        static int ebedlo(int osztondij, int choice, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover,Difficulty difficulty, out int x1, out int x2, out int x3, out bool x4)
+        static int ebedlo(int osztondij, int choice, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, Difficulty difficulty, out int x1, out int x2, out int x3, out bool x4)
         {
             becsengo -= 1;
             Console.Clear();
@@ -282,18 +299,19 @@ namespace JedlikRPG
             return 0;
         }
 
-        static int folyoso( int becsengo,Difficulty difficulty, out int x2)
+        static int folyoso(string ora, int becsengo, Difficulty difficulty, out int x2)
         {
             int choice = 0;
-            while (choice < 1 || choice > 11) 
+            while (choice < 1 || choice > 11)
             {
+                Console.WriteLine($"\nA következő órád {ora}. Menj órára mielőtt becsengetnek ({becsengo} perc)\n");
                 Console.WriteLine("\n1 - Gépészlépcső (1 perc)\n2 - Orvosi szoba (1 perc)\n3 - Büfé (1 perc)\n4 - Mellékhelyiség (1 perc)\n5 - Matek óra terme (1 perc)\n6 - Angol óra terme (1 perc)\n7 - Történelem óra terme (1 perc)\n8 - Fizika óra terme (1 perc)\n9 - Irodalom óra terme (1 perc)\n10 - Gépterem (1 perc)\n11 - Ebédlő (1 perc)\n");
                 choice = Input("Választás: ");
             }
 
             if (choice == 1)
             {
-                x2 = becsengo - (int)(1 * difficulty.Bonusz);
+                x2 = becsengo;
                 return 1;
             }
             if (choice == 2)
@@ -348,6 +366,64 @@ namespace JedlikRPG
             }
             x2 = becsengo;
             return 0;
+        }
+
+        static int gepeszlepcso(int osztondij, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, Difficulty difficulty, out int x1, out int x2)
+        {
+            Random rand = new Random();
+
+            becsengo -= 1;
+            Console.Clear();
+
+            double ajulas = rand.NextDouble();
+            int choice = 0;
+            if (ajulas <= difficulty.Esely)
+            {
+                    Console.WriteLine("A 41-es terem mellől áradó szagtól elájultál, ezért az orvosi szobába kerültél");
+                    Console.WriteLine($"Helyszín: Orvosi szoba");
+                    Console.WriteLine($"Elegem van: {elegemvan}");
+                    Console.WriteLine($"Éhség: {ehseg}");
+                    Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+                    Console.WriteLine($"Erő: {ero}\n\n");
+                    Console.WriteLine("\nAdtak rá jeget");
+                    elegemvan += 30;
+                    becsengo -= 5;
+                    x1 = elegemvan;
+                    x2 = becsengo;
+                    return 1;
+            }
+
+            while (choice < 1 || choice > 2)
+            {
+                Console.WriteLine($"Helyszín: Gépészlépcső");
+                Console.WriteLine($"Elegem van: {elegemvan}");
+                Console.WriteLine($"Éhség: {ehseg}");
+                Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+                Console.WriteLine($"Erő: {ero}\n\n");
+                Console.WriteLine("\nNagyon büdös van, ennél még a likőrgyár mellett lakni is elviselhetőbb.");
+                Console.WriteLine("\n1 - Angol óra terme (1 perc)\n2 - Vissza a folyosóra (1 perc)");
+
+                choice = Input("Választás: ");
+            }
+
+            if (choice == 1)
+            {
+                x1 = elegemvan;
+                x2 = becsengo;
+                return 2;
+            }
+
+            if (choice == 2)
+            {
+                x1 = elegemvan;
+                x2 = becsengo;
+                return 3;
+            }
+
+            x1 = elegemvan;
+            x2 = becsengo;
+            return 0;
+
         }
     }
 }

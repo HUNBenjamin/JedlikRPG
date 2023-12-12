@@ -100,15 +100,6 @@ namespace JedlikRPG
                 {
                     Console.WriteLine("placeholder");
                 }
-                if (JedlikBepulet(becsengo, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, difficulty, choice, out becsengo, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out osztondij, out difficulty, out choice) == 1)
-                {
-                    gameover = true;
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("epic b épületes placeholder");
-                }
             }
         }
     }
