@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -9,11 +11,11 @@ namespace JedlikRPG
 {
     internal partial class Program
     {
-        static void JedlikBepulet(int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, List<List<dynamic>> Inventory, bool gameover, int osztondij, Difficulty difficulty)
+        static int JedlikBepulet(int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, List<List<dynamic>> Inventory, bool gameover, int osztondij, Difficulty difficulty, int choice, out int x1, out int x2, out int x3, out int x4, out int x5, out List<List<dynamic>> x6, out bool x7, out int x8, out Difficulty x9, out int x10)
         {
             Console.WriteLine("Csak nem a B épületben lesz órád?\nMerre tartasz?\n1 - Tesi\n2 - Adatbázis\n3 - Digitális technika\n4 - Pince\n5 - Padlás (meglepetés)");
             Console.Write("Választás: ");
-            int choice = int.Parse(Console.ReadLine());
+            choice = int.Parse(Console.ReadLine());
             while (choice <= 1 && choice >= 5)
             {
                 if (choice == 1)
@@ -34,9 +36,20 @@ namespace JedlikRPG
                 }
                 else if (choice == 5)
                 {
-                    Padlas();
+                    Padlas(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, osztondij, out elegemvan, out ehseg, out hugyholyag, out ero, out gameover, out Inventory, out osztondij);
                 }
             }
+            x1 = becsengo;
+            x2 = elegemvan;
+            x3 = ehseg;
+            x4 = hugyholyag;
+            x5 = ero;
+            x6 = Inventory;
+            x7 = gameover;
+            x8 = osztondij;
+            x9 = difficulty;
+            x10 = choice;
+            return 0;
         }
         static void Tesi(int elegemvan, int ero, out int x1, out int x2)
         {
@@ -116,11 +129,13 @@ namespace JedlikRPG
             }
             Console.WriteLine("Striderné csak megérkezett, és munkához is lát.\nScreenTask működik, úgyhogy talán nem maradsz le, már ha persze csinálsz valamit.\nAz egyetlen feladatod csak kussban végigülni az órát, és néha csinálhatnád az órai munkát is.");
             elegemvan += 5;
-            // if elegemvan < 100
             if (elegemvan < 100)
             {
-                Console.WriteLine("A könnyebik órákhoz tartozott, de akkor is túlélted.");
                 gameover = true;
+            }
+            else
+            {
+                Console.WriteLine("A könnyebik órákhoz tartozott, de akkor is túlélted.");
             }
             x1 = elegemvan;
             x2 = gameover;
@@ -182,11 +197,110 @@ namespace JedlikRPG
             }
             // oriaspatkany
         }
-        static void Padlas()
+        static void Padlas(int choice, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, List<List<dynamic>> Inventory, int osztondij, out int x1, out int x2, out int x3, out int x4, out bool x5, out List<List<dynamic>> x6, out int x7)
         {
-            Console.WriteLine("Elnézted a termet, vagy tudod hová jöttél? Üdv a Black Marketen!");
-            Console.WriteLine("Mivel szolgálhatunk?");
-            // blackmarket todo
+
+            int péz = osztondij;
+            Console.WriteLine($"Beléptél az Euróboltba");
+            Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
+            Console.WriteLine("1 - Xanax(-60 elegem van)\t3000f\n2 - UTP kábel (+40 erő)\t5000f\n3 - Grántotta (megszűnteti az éhséget)\t15.000f\n4 - Táska megtekintése\n5 - Kilépés az Euróboltból");
+            while (!gameover)
+            {
+                while (choice >= 0 || choice <= 5)
+                {
+                    if (choice == 0)
+                    {
+                        Console.WriteLine($"Beléptél az Euróboltba");
+                        Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
+                        Console.WriteLine("1 - Xanax(-60 elegem van)\t5000f\n2 - UTP kábel (+40 erő)\t8000f\n3 - Grántotta (megszűnteti az éhséget)\t5.000f\n4 - Táska megtekintése\n5 - Kilépés az Euróboltból");
+                    }
+                    choice = Input("Választás: ");
+                    if (choice == 1)
+                    {
+                        if (péz >= 5000)
+                        {
+                            Console.Clear();
+                            statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
+                            Console.WriteLine("\nEzután talán lenyugszol.");
+                            péz -= 5000;
+                            Inventory.Add(new List<dynamic> { "Xanax", 1 });
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 5000f");
+                        }
+                        choice = 0;
+                    }
+                    if (choice == 2)
+                    {
+                        if (péz >= 8000)
+                        {
+                            Console.Clear();
+                            statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
+                            Console.WriteLine("\nFelfegyverkeztél egy UTP kábellel. Mostmár félnek tőled néhányan.");
+                            péz -= 8000;
+                            Inventory.Add(new List<dynamic> { "UTP kábel", 1 });
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 8000f");
+                        }
+                        choice = 0;
+                    }
+                    if (choice == 3)
+                    {
+                        if (péz > 5000)
+                        {
+                            Console.Clear();
+                            statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
+                            Console.WriteLine("\nGyomrod tele. Erőd tele.");
+                            péz -= 5000;
+                            Inventory.Add(new List<dynamic> { "Grántotta", 1 });
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 6000f");
+                        }
+                        choice = 0;
+                    }
+                    if (choice == 4)
+                    {
+                        int altChoice = -1;
+                        while (altChoice == -1)
+                        {
+                            PrintInventory(Inventory);
+                            Console.WriteLine("0. Kilépés");
+                            altChoice = Input("Választás: ");
+                        }
+                        if (altChoice == 0) break;
+                        else
+                        {
+                            UseItem(Inventory, Inventory[altChoice - 1][0], ehseg, elegemvan, hugyholyag, ero, out ehseg, out elegemvan, out hugyholyag, out ero, out Inventory);
+                        }
+                    }
+                    if (choice == 5)
+                    {
+                        x1 = elegemvan;
+                        x2 = ehseg;
+                        x3 = hugyholyag;
+                        x4 = ero;
+                        x5 = gameover;
+                        x6 = Inventory;
+                        x7 = péz;
+                        return;
+                    }
+                }
+            }
+            x1 = elegemvan;
+            x2 = ehseg;
+            x3 = hugyholyag;
+            x4 = ero;
+            x5 = gameover;
+            x6 = Inventory;
+            x7 = péz;
         }
     }
 }
