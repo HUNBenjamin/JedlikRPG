@@ -64,9 +64,14 @@ namespace JedlikRPG
                 }
                 if (choice == 2)
                 {
-                    if (hatsoKapu(becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo) == 0)
+                    if (hatsoKapu(choice, becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo) == 0)
                     {
                         choice = 0;
+                    }
+
+                    else if (hatsoKapu(choice, becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo) == 1)
+                    {
+                        JedlikBepulet(becsengo, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, difficulty);
                     }
                 }
                 if (choice == 3)
@@ -99,9 +104,25 @@ namespace JedlikRPG
                         UseItem(Inventory, Inventory[altChoice - 1][0], ehseg, elegemvan, hugyholyag, ero, out ehseg, out elegemvan, out hugyholyag, out ero, out Inventory);
                     }
                 }
+
+                if (becsengo < 0 && ora == "matek")
+                {
+                    Console.WriteLine("Nem értél be időben órára, sajnos kirúgtak.");
+                    gameover = true;
+                    x1 = choice;
+                    x2 = becsengo;
+                    x3 = elegemvan;
+                    x4 = ehseg;
+                    x5 = hugyholyag;
+                    x6 = ero;
+                    x7 = Inventory;
+                    x8 = gameover;
+                    x9 = osztondij;
+                    return 1;
+                }
             }
 
-            if (becsengo < 0)
+            if (becsengo < 0 && ora == "matek")
             {
                 Console.WriteLine("Nem értél be időben órára, sajnos kirúgtak.");
                 gameover = true;
@@ -157,20 +178,41 @@ namespace JedlikRPG
             return 0;
         }
 
-        static int hatsoKapu(int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, out int x1)
+        static int hatsoKapu(int choice, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, out int x1)
         {
-            Console.Clear();
-            Console.WriteLine($"Helyszín: Hátsó kapu");
-            Console.WriteLine($"Elegem van: {elegemvan}");
-            Console.WriteLine($"Éhség: {ehseg}");
-            Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
-            Console.WriteLine($"Erő: {ero}\n\n");
-            Console.WriteLine("\nA hátsó kapu nyitva van, úgy tűnik.\nHova tovább?");
+            while (choice < 1 || choice > 2)
+            {
+                Console.WriteLine("\n1 - Tovább a B épület felé (1 perc)\n2 - Vissza a folyosóra\n");
+                choice = Input("Választás: ");
+                if (choice == 1)
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Helyszín: Utca");
+                    Console.WriteLine($"Elegem van: {elegemvan}");
+                    Console.WriteLine($"Éhség: {ehseg}");
+                    Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+                    Console.WriteLine($"Erő: {ero}\n\n");
+                    Console.WriteLine("Elindultál, az A és a B épület között tengődsz");
 
-            becsengo -= 2;
+                    becsengo -= 1;
 
+                    //TODO
+                    x1 = becsengo;
+                    return 1;
+                }
+
+                else
+                {
+
+                    becsengo -= 2;
+
+                    x1 = becsengo;
+                    return 0;
+                }
+            }
             x1 = becsengo;
-            return 0;
+            return 2;
+
         }
 
         static int ebedlo(int osztondij, int choice, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover,Difficulty difficulty, out int x1, out int x2, out int x3, out bool x4)
