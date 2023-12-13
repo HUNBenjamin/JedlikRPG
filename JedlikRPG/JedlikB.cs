@@ -206,68 +206,76 @@ namespace JedlikRPG
         {
 
             int péz = osztondij;
-            Console.WriteLine($"Beléptél az Euróboltba");
+            Console.WriteLine($"Egy dohos porfedte padlóra vetetted lábad, a sötetben felcsillan egy szempár és a következő árucikkeket ajánlja fel:");
             Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
-            Console.WriteLine("1 - Xanax(-60 elegem van)\t3000f\n2 - UTP kábel (+40 erő)\t5000f\n3 - Grántotta (megszűnteti az éhséget)\t15.000f\n4 - Táska megtekintése\n5 - Kilépés az Euróboltból");
+            Console.WriteLine("1 - Xanax (-60 elegem van)          15.000f" +
+                              "\n2 - UTP kábel (+40 erő)           18.000f" +
+                              "\n3 - Grántotta (-100 éhség)        15.000f" +
+                              "\n4 - Táska megtekintése" +
+                              "\n5 - Vissza a fénybe"); 
             while (!gameover)
             {
                 while (choice >= 0 || choice <= 5)
                 {
                     if (choice == 0)
                     {
-                        Console.WriteLine($"Beléptél az Euróboltba");
-                        Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
-                        Console.WriteLine("1 - Xanax(-60 elegem van)\t5000f\n2 - UTP kábel (+40 erő)\t8000f\n3 - Grántotta (megszűnteti az éhséget)\t5.000f\n4 - Táska megtekintése\n5 - Kilépés az Euróboltból");
+                        Console.WriteLine($"Egy dohos porfedte padlóra vetetted lábad, a sötetben felcsillan egy szempár és a következő árucikkeket ajánlja fel:");
+                        Console.WriteLine("Spéci áruk tárháza fogad...");
+                        Console.WriteLine("1 - Xanax (-60 elegem van)          15.000f" +
+                                          "\n2 - UTP kábel (+40 erő)           18.000f" +
+                                          "\n3 - Grántotta (-100 éhség)        15.000f" +
+                                          "\n4 - Táska megtekintése" +
+                                          "\n5 - Vissza a fénybe");
                     }
                     choice = Input("Választás: ");
                     if (choice == 1)
                     {
-                        if (péz >= 5000)
+                        if (péz >= 15000)
                         {
                             Console.Clear();
                             statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
-                            Console.WriteLine("\nEzután talán lenyugszol.");
-                            péz -= 5000;
+                            Console.WriteLine("\nModern problémák, modern megoldások.");
+                            péz -= 15000;
                             Inventory.Add(new List<dynamic> { "Xanax", 1 });
                         }
                         else
                         {
                             Console.Clear();
-                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 5000f");
+                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 15000f");
                         }
                         choice = 0;
                     }
                     if (choice == 2)
                     {
-                        if (péz >= 8000)
+                        if (péz >= 18000)
                         {
                             Console.Clear();
                             statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
-                            Console.WriteLine("\nFelfegyverkeztél egy UTP kábellel. Mostmár félnek tőled néhányan.");
-                            péz -= 8000;
+                            Console.WriteLine("\nFelfegyverkeztél egy UTP kábellel. A csillogó műanyag tekintélyt parancsolva csillog a zsebedben.");
+                            péz -= 18000;
                             Inventory.Add(new List<dynamic> { "UTP kábel", 1 });
                         }
                         else
                         {
                             Console.Clear();
-                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 8000f");
+                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 18000f");
                         }
                         choice = 0;
                     }
                     if (choice == 3)
                     {
-                        if (péz > 5000)
+                        if (péz > 15000)
                         {
                             Console.Clear();
                             statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
-                            Console.WriteLine("\nGyomrod tele. Erőd tele.");
-                            péz -= 5000;
+                            Console.WriteLine("\nGrántottás vagy.");
+                            péz -= 15000;
                             Inventory.Add(new List<dynamic> { "Grántotta", 1 });
                         }
                         else
                         {
                             Console.Clear();
-                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 6000f");
+                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 16000f");
                         }
                         choice = 0;
                     }

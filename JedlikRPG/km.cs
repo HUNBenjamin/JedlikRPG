@@ -29,7 +29,11 @@ namespace JedlikRPG
                         {
                             Console.WriteLine($"Beléptél az Euróboltba");
                             Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
-                            Console.WriteLine("1 -   Kaja(-20 éhség)\t3000f\n2 - Alkohol (-20 elegem van)\t5000f\n3 - Pelenka (A mai nap folyamán nem kell mosdóba menned)\t15.000f\n4 - Táska megtekintése\n5 - Kilépés az Euróboltból");
+                            Console.WriteLine("1 -   Kaja(-20 éhség)                        3000f" +
+                                "\n2 - Alkohol (-20 elegem van)                             5000f" +
+                                "\n3 - Pelenka (A mai nap folyamán nem kell mosdóba menned) 15.000f" +
+                                "\n4 - Táska megtekintése" +
+                                "\n5 - Kilépés az Euróboltból");
                         }
                         choice = Input("Választás: ");
 
