@@ -65,12 +65,12 @@ namespace JedlikRPG
                 }
                 if (choice == 2)
                 {
-                    if (hatsoKapu(becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo) == 0)
+                    if (hatsoKapu(becsengo, elegemvan, ehseg, hugyholyag, ero, osztondij, gameover, difficulty, Inventory, out becsengo) == 0)
                     {
                         choice = 0;
                     }
 
-                    else if (hatsoKapu(becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo) == 1)
+                    else if (hatsoKapu(becsengo, elegemvan, ehseg, hugyholyag, ero, osztondij, gameover, difficulty, Inventory, out becsengo) == 1)
                     {
                         JedlikBepulet(becsengo, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, difficulty, choice, out becsengo, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out osztondij, out difficulty, out choice);
                     }
@@ -196,7 +196,7 @@ namespace JedlikRPG
             return 0;
         }
 
-        static int hatsoKapu(int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, out int x1)
+        static int hatsoKapu(int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, int osztondij, bool gameover, Difficulty difficulty, List<List<dynamic>> Inventory, out int x1)
         {
             int choice = 0;
             while (choice < 1 || choice > 2)
@@ -222,7 +222,7 @@ namespace JedlikRPG
 
                 else
                 {
-
+                    JedlikA(choice, becsengo, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, difficulty, out choice, out becsengo, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out osztondij);
                     becsengo -= 2;
 
                     x1 = becsengo;

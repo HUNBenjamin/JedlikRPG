@@ -13,35 +13,43 @@ namespace JedlikRPG
     {
         static int JedlikBepulet(int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, List<List<dynamic>> Inventory, bool gameover, int osztondij, Difficulty difficulty, int choice, out int x1, out int x2, out int x3, out int x4, out int x5, out List<List<dynamic>> x6, out bool x7, out int x8, out Difficulty x9, out int x10)
         {
-            Console.WriteLine("Csak nem a B épületben lesz órád?\nMerre tartasz?\n1 - Tesi\n2 - Adatbázis\n3 - Digitális technika\n4 - Pince\n5 - Padlás (meglepetés)\n6 - Vissza az A épületbe");
-            Console.Write("Választás: ");
-            choice = int.Parse(Console.ReadLine());
-            while (choice <= 1 && choice >= 6)
+            int péz = osztondij;
+            choice = 0;
+            while (choice < 1 || choice > 4)
             {
+                if (choice == 0) { 
+                    Console.WriteLine("Merre tartasz?\n1 - Tesi\n2 - Pince\n3 - Padlás (meglepetés)\n4 - Vissza az A épületbe");
+                    Console.Write("Választás: ");
+                    choice = int.Parse(Console.ReadLine());
+                }
                 if (choice == 1)
                 {
+                    Console.Clear();
+                    statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
                     Tesi(elegemvan, ero, out elegemvan, out ero);
+                    choice = 0;
                 }
-                //else if (choice == 2)
-                //{
-                //    AdatB(elegemvan,gameover,out elegemvan,out gameover);
-                //}
-                //else if (choice == 3)
-                //{
-                //    DigTech(elegemvan,gameover, out elegemvan, out gameover);
-                //}
+                else if (choice == 2)
+                {
+                    Console.Clear();
+                    statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
+                    Pince();
+                    choice = 0;
+                }
+                else if (choice == 3)
+                {
+                    Console.Clear();
+                    statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
+                    Padlas(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, osztondij, out elegemvan, out ehseg, out hugyholyag, out ero, out gameover, out Inventory, out osztondij);
+                    choice = 0;
+                }
                 else if (choice == 4)
                 {
-                    Pince();
-                }
-                else if (choice == 5)
-                {
-                    Padlas(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, osztondij, out elegemvan, out ehseg, out hugyholyag, out ero, out gameover, out Inventory, out osztondij);
-                }
-                else if (choice == 6)
-                {
+                    Console.Clear();
+                    statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
                     becsengo -= 2;
-                    hatsoKapu(becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo);
+                    hatsoKapu(becsengo, elegemvan, ehseg, hugyholyag, ero, osztondij, gameover, difficulty, Inventory, out becsengo);
+                    choice = 0;
                 }
             }
             x1 = becsengo;
@@ -72,8 +80,8 @@ namespace JedlikRPG
                 Console.WriteLine("Megdícséred a cipőjét? Biztos értékelné.");
                 Console.WriteLine("1 - Persze, legjobb tanár\n2 - Áh, az enyém úgyis jobb");
                 Console.Write("Választás: ");
-                int choice = int.Parse(Console.ReadLine());
-                while (choice != 1 || choice != 2)
+                int choice = 0;
+                while (choice < 1 || choice > 2)
                 {
                     choice = int.Parse(Console.ReadLine());
                     if (choice == 1)
@@ -86,121 +94,52 @@ namespace JedlikRPG
                         Console.WriteLine("Bár nem változtatott volna sokmindenen, azért alap lett volna megdícsérni a tanár úr csukáit.");
                     }
                 }
+                choice = 0;
+                Console.WriteLine("Amíg a többiek rúgják a bőrt, nincs kedved megemelni a nehezet a szertárban? Nincs olyan, hogy valaki túl erős.");
+                Console.WriteLine("1 - Beach body, here I come\n2 - Inkább átöltöznék");
+                Console.Write("Választás: ");
+                while (choice < 1 || choice > 2)
+                {
+                    choice = int.Parse(Console.ReadLine());
+                    if (choice == 1)
+                    {
+                        Console.WriteLine("Jónéhányszor felemelted a súlyokat, és bár bűzlik tőle a kezed, attól még erősebb lettél.");
+                        ero += 5;
+                    }
+                    else if (choice == 2)
+                    {
+                        Console.WriteLine("Így előbb elmehettél öltözni, de most fél óráig csak nézel ki a fejedből, bármi világmegváltó gondolat nélkül.");
+                    }
+                }
             }
             else if (adibaIttvan == 2)
             {
+                int choice = 0;
                 Console.WriteLine("Hát Ádibá már megint Pécsett tanulgat, de ne aggódj, nem lesz helyettesítés. Addig majd fociznak a többiek.");
-            }
-            Console.WriteLine("Amíg a többiek rúgják a bőrt, nincs kedved megemelni a nehezet a szertárban? Nincs olyan, hogy valaki túl erős.");
-            Console.WriteLine("1 - Beach body, here I come\n2 - Inkább átöltöznék");
-            Console.Write("Választás: ");
-            int choice2 = int.Parse(Console.ReadLine());
-            choice2 = int.Parse(Console.ReadLine());
-            while (choice2 != 1 || choice2 != 2)
-            {
-                choice2 = int.Parse(Console.ReadLine());
-                if (choice2 == 1)
+                Console.WriteLine("Amíg a többiek rúgják a bőrt, nincs kedved megemelni a nehezet a szertárban? Nincs olyan, hogy valaki túl erős.");
+                Console.WriteLine("1 - Beach body, here I come\n2 - Inkább átöltöznék");
+                Console.Write("Választás: ");
+                while (choice < 1 || choice > 2)
                 {
-                    Console.WriteLine("Jónéhányszor felemelted a súlyokat, és bár bűzlik tőle a kezed, attól még erősebb lettél.");
-                    ero += 5;
-                }
-                else if (choice2 == 2)
-                {
-                    Console.WriteLine("Így előbb elmehettél öltözni, de most fél óráig csak nézel ki a fejedből, bármi világmegváltó gondolat nélkül.");
+                    choice = int.Parse(Console.ReadLine());
+                    if (choice == 1)
+                    {
+                        Console.WriteLine("Jónéhányszor felemelted a súlyokat, és bár bűzlik tőle a kezed, attól még erősebb lettél.");
+                        ero += 5;
+                    }
+                    else if (choice == 2)
+                    {
+                        Console.WriteLine("Így előbb elmehettél öltözni, de most fél óráig csak nézel ki a fejedből, bármi világmegváltó gondolat nélkül.");
+                    }
                 }
             }
             x1 = elegemvan;
             x2 = ero;
+            return;
         }
-        //static void AdatB(int elegemvan, bool gameover, out int x1,out bool x2)
-        //{
-        //    Console.WriteLine("Becsöngettek, úgyhogy már csak 15 perc van a tanárnő érkezéséig.");
-        //    Console.WriteLine("Mit teszel, hogy elüsd az időt?");
-        //    Console.WriteLine("1 - Orosz desszert recepteket nézel a YouTube-on\n2 - Merge Fruit");
-        //    Console.Write("Választás: ");
-        //    int choice = int.Parse(Console.ReadLine());
-        //    while (choice != 1 || choice != 2)
-        //    {
-        //        choice = int.Parse(Console.ReadLine());
-        //        if (choice == 1)
-        //        {
-        //            Console.WriteLine("Rákattintottál a \"Csak 3 hozzávaló, 15 perc és kész a finom\" videóra, és csorgattad rá a nyáladat, tudván, hogy úgyse fogod sohase elkészíteni.");
-        //            elegemvan -= 5;
-        //        }
-        //        else if (choice == 2)
-        //        {
-        //            Console.WriteLine("Új rekordot állítottál volna fel a játékban, de túl sok volt egymáson a citrom.");
-        //        }
-        //    }
-        //    Console.WriteLine("Striderné csak megérkezett, és munkához is lát.\nScreenTask működik, úgyhogy talán nem maradsz le, már ha persze csinálsz valamit.\nAz egyetlen feladatod csak kussban végigülni az órát, és néha csinálhatnád az órai munkát is.");
-        //    elegemvan += 5;
-        //    if (elegemvan < 100)
-        //    {
-        //        gameover = true;
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("A könnyebik órákhoz tartozott, de akkor is túlélted.");
-        //    }
-        //    x1 = elegemvan;
-        //    x2 = gameover;
-        //}
-        //static void DigTech(int elegemvan,bool gameover, out int x1, out bool x2)
-        //{
-        //    Console.WriteLine("Ez az óra csak fél órát vesz igénybe, mert csak annyi marad, mire bekapcsolnak a gépek a B7-ben.");
-        //    Console.WriteLine("Próbálj meg lenyugodni, ez az óra sokkal többnek érződik.");
-        //    Console.WriteLine("Amíg Szűcs Gábor magyarázza az általa kitalált tananyagot, mit teszel?");
-        //    Console.WriteLine("1 - Megpróbálsz figyelni, és a füzetbe is bekeríted a vetített anyagot\n2 - Emojikat spammelsz a meetben\n3 - Nyomot hagysz a Jamboardon");
-        //    Console.Write("Választás: ");
-        //    int choice = int.Parse(Console.ReadLine());
-        //    while (choice <= 1 && choice >= 5)
-        //    {
-        //        if (choice == 1)
-        //        {
-        //            Console.WriteLine("Két oldal be is telt a füzetedben. Lehet, hogy minimálbérért fogsz dolgozni az elkövetkezendő harminc évben, de legalább tudod, hogy a konjuktív szabályos alak a maxtermek és kapcsolatából áll.");
-        //            elegemvan += 10;
-        //        }
-        //        else if (choice == 2)
-        //        {
-        //            Console.WriteLine("Beállítottad a színesbőrű emojikat, és 5 percen keresztül likeokat spammeltél. Sokkal jobban érzed magad.");
-        //            elegemvan -= 5;
-        //        }
-        //        else if (choice == 3)
-        //        {
-        //            Console.WriteLine("Létrehoztál egy Jamboardot, és beillesztetted a slozaik.jpg-t.");
-        //            elegemvan -= 5;
-        //        }
-        //    }
-        //    if (elegemvan < 100)
-        //    {
-        //        Console.WriteLine("Sikeresen túlélted ezt az órát, minden tiszteletem.");
-        //        gameover = true;
-        //    }
-        //    x1 = elegemvan;
-        //    x2 = gameover;
-        //}
         static void Pince()
         {
             Console.WriteLine("Pingpongozás közben a labda levándorolt a pincébe, de ez volt az utolsó labda, valakinek le kéne menni érte.");
-            //Console.WriteLine("A pincében szembetalálod magad egy nether portált megszégyenítő kapuval, a mellette lévő tábla szerint ha átmész rajta, az iskola egy véletlenszerű pontján fogsz kikötni.");
-            //Console.WriteLine("Igénybe veszed a kaput? A használata ingyenes.");
-            //Console.WriteLine("1 - Igénybe veszem\n2 - Talán majd máskor");
-            //Console.Write("Választás: ");
-            //int choice = int.Parse(Console.ReadLine());
-            //while (choice != 1 || choice != 2)
-            //{
-            //    choice = int.Parse(Console.ReadLine());
-            //    if (choice == 1)
-            //    {
-            //        Console.WriteLine("Na hol kötöttél ki? Mi se tudjuk...");
-            //        // random shortcut
-            //    }
-            //    else if (choice == 2)
-            //    {
-            //        Console.WriteLine("Én se bíztam volna a kapuban, gondolj bele, milyen lett volna, ha a vécébe kerültél volna, mikor Tüncike épp pókhálózza a kéztörlő dobozokat...");
-            //    }
-            //}
-            // oriaspatkany
         }
         static void Padlas(int choice, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, List<List<dynamic>> Inventory, int osztondij, out int x1, out int x2, out int x3, out int x4, out bool x5, out List<List<dynamic>> x6, out int x7)
         {
