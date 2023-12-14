@@ -135,6 +135,7 @@ namespace JedlikRPG
                         if (Matek(elegemvan, becsengo, ehseg, hugyholyag, gameover, out elegemvan, out becsengo, out ehseg, out hugyholyag) == 1)
                         {
                             matek = true;
+                            ora = "angol";
                             choice = 0;
                             becsengo = 10;
                         }
@@ -153,6 +154,7 @@ namespace JedlikRPG
                         if (Angol(elegemvan, becsengo, ehseg, hugyholyag, gameover, out elegemvan, out becsengo, out ehseg, out hugyholyag) == 1)
                         {
                             angol = true;
+                            ora = "történelem";
                             choice = 0;
                             becsengo = 10;
                         }
@@ -171,6 +173,7 @@ namespace JedlikRPG
                         if (Tortenelem(elegemvan, becsengo, ehseg, hugyholyag, gameover, out elegemvan, out becsengo, out ehseg, out hugyholyag) == 1)
                         {
                             tortenelem = true;
+                            ora = "fizika";
                             choice = 0;
                             becsengo = 10;
                         }
@@ -189,6 +192,7 @@ namespace JedlikRPG
                         if (Fizika(elegemvan, becsengo, ehseg, hugyholyag, gameover, out elegemvan, out becsengo, out ehseg, out hugyholyag) == 1)
                         {
                             fizika = true;
+                            ora = "irodalom";
                             choice = 0;
                             becsengo = 10;
                         }
@@ -207,6 +211,7 @@ namespace JedlikRPG
                         if (Irodalom(elegemvan, becsengo, ehseg, hugyholyag, gameover, out elegemvan, out becsengo, out ehseg, out hugyholyag) == 1)
                         {
                             irodalom = true;
+                            ora = "tesi";
                             choice = 0;
                             becsengo = 10;
                         }
