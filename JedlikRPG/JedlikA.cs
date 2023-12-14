@@ -56,6 +56,7 @@ namespace JedlikRPG
                 Console.WriteLine($"\nA következő órád {ora}. Menj órára mielőtt becsengetnek ({becsengo} perc)\n");
                 Console.WriteLine("\n1 - Első kapu (1 perc)\n2 - Hátsó kapu (2 perc)\n3 - Folyosó (1 perc)");
                 choice = Input("Választás: ");
+            }
                 if (choice == 1)
                 {
                     if (elsoKapu(becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo) == 0)
@@ -78,41 +79,151 @@ namespace JedlikRPG
                 }
                 if (choice == 3)
                 {
-                    folyoso(ora, becsengo, difficulty, out becsengo);
                     if (folyoso(ora, becsengo, difficulty, out becsengo) == 1)
                     {
-                        gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo);
+
+                        if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 1)
+                        {
+                            if (OrvosiSzoba(elegemvan, becsengo, out elegemvan, out becsengo) == 1)
+                            {
+                                Console.WriteLine("Mi a baj? Csak nem fáj valami?");
+                            }
+                        }
+                        else if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 2)
+                        {
+                            if (ora == "angol")
+                            {
+                                Angol(elegemvan, becsengo, ehseg, hugyholyag, gameover, out elegemvan, out becsengo, out ehseg, out hugyholyag);
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Nem most lesz {ora}, te nagyon okos");
+                                choice = 0;
+                            }
+                        }
+                        else if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 3)
+                        {
+                            folyoso(ora, becsengo, difficulty, out becsengo);
+                        }
+                        choice = 0;
                     }
                     if (folyoso(ora, becsengo, difficulty, out becsengo) == 2)
                     {
-                        OrvosiSzoba(elegemvan, becsengo, out elegemvan, out becsengo);
+                        if (OrvosiSzoba(elegemvan, becsengo, out elegemvan, out becsengo) == 1)
+                        {
+                            Console.WriteLine("Mi a baj? Csak nem fáj valami?");
+                        }
                     }
-                    if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 1)
-                    {
-                        OrvosiSzoba(elegemvan, becsengo, out elegemvan, out becsengo);
-                    }
-                    else if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 2)
-                    {
-                        Console.WriteLine("mingya");
-                    }
-                    else if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 3)
-                    {
-                        //idk
-                    }
-                    else
-                    {
-                        choice = 0;
-                    }
+
                     if (folyoso(ora, becsengo, difficulty, out becsengo) == 3)
                     {
                         bufe(choice, elegemvan, ehseg, hugyholyag, osztondij, ero, gameover, Inventory, out Inventory, out osztondij);
                     }
-                    if (folyoso(ora, becsengo, difficulty, out becsengo) == 11)
+
+                if (folyoso(ora, becsengo, difficulty, out becsengo) == 4)
+                {
+                    if (Mellekhelyiseg(elegemvan, becsengo, hugyholyag, out elegemvan, out becsengo, out hugyholyag) == 1)
+                    {
+                        choice = 0;
+                    }
+                }
+
+                if (folyoso(ora, becsengo, difficulty, out becsengo) == 5)
+                {
+                    if (ora == "matek")
+                    {
+                        if (Matek(elegemvan, becsengo, ehseg, hugyholyag, gameover, out elegemvan, out becsengo, out ehseg, out hugyholyag) == 1)
+                        {
+                            matek = true;
+                            choice = 0;
+                            becsengo = 10;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Nem most lesz matek, te nagyon okos");
+                        choice = 0;
+                    }
+                    
+                }
+                if (folyoso(ora, becsengo, difficulty, out becsengo) == 6)
+                {
+                    if (ora == "angol")
+                    {
+                        if (Angol(elegemvan, becsengo, ehseg, hugyholyag, gameover, out elegemvan, out becsengo, out ehseg, out hugyholyag) == 1)
+                        {
+                            angol = true;
+                            choice = 0;
+                            becsengo = 10;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Nem most lesz angol, te nagyon okos");
+                        choice = 0;
+                    }
+
+                }
+                if (folyoso(ora, becsengo, difficulty, out becsengo) == 7)
+                {
+                    if (ora == "történelem")
+                    {
+                        if (Tortenelem(elegemvan, becsengo, ehseg, hugyholyag, gameover, out elegemvan, out becsengo, out ehseg, out hugyholyag) == 1)
+                        {
+                            tortenelem = true;
+                            choice = 0;
+                            becsengo = 10;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Nem most lesz történelem, te nagyon okos");
+                        choice = 0;
+                    }
+
+                }
+                if (folyoso(ora, becsengo, difficulty, out becsengo) == 8)
+                {
+                    if (ora == "fizika")
+                    {
+                        if (Fizika(elegemvan, becsengo, ehseg, hugyholyag, gameover, out elegemvan, out becsengo, out ehseg, out hugyholyag) == 1)
+                        {
+                            fizika = true;
+                            choice = 0;
+                            becsengo = 10;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Nem most lesz fizika, te nagyon okos");
+                        choice = 0;
+                    }
+
+                }
+                if (folyoso(ora, becsengo, difficulty, out becsengo) == 9)
+                {
+                    if (ora == "irodalom")
+                    {
+                        if (Irodalom(elegemvan, becsengo, ehseg, hugyholyag, gameover, out elegemvan, out becsengo, out ehseg, out hugyholyag) == 1)
+                        {
+                            irodalom = true;
+                            choice = 0;
+                            becsengo = 10;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Nem most lesz {ora}, te nagyon okos");
+                        choice = 0;
+                    }
+
+                }
+
+                if (folyoso(ora, becsengo, difficulty, out becsengo) == 11)
                     {
                         if (ebedlo(osztondij, choice, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, Inventory, out osztondij, out choice, out becsengo, out gameover) == 1)
                         {
                             gameover = true;
-                            break;
                         }
                         else
                         {
@@ -130,7 +241,7 @@ namespace JedlikRPG
                         Console.WriteLine("0. Kilépés");
                         altChoice = Input("Választás: ");
                     }
-                    if (altChoice == 0) break;
+                    if (altChoice == 0) Console.WriteLine("");
                     else
                     {
                         UseItem(Inventory, Inventory[altChoice - 1][0], ehseg, elegemvan, hugyholyag, ero, out ehseg, out elegemvan, out hugyholyag, out ero, out Inventory);
@@ -152,7 +263,6 @@ namespace JedlikRPG
                     x9 = osztondij;
                     return 1;
                 }
-            }
 
             if (becsengo < 0 && ora == "matek")
             {
@@ -216,20 +326,16 @@ namespace JedlikRPG
             while (choice < 1 || choice > 2)
             {
                 Console.WriteLine("\n1 - Tovább a B épület felé (1 perc)\n2 - Vissza a folyosóra\n");
+                Console.WriteLine("Elindultál, az A és a B épület között tengődsz");
                 choice = Input("Választás: ");
                 if (choice == 1)
                 {
                     Console.Clear();
                     Console.WriteLine($"Helyszín: Utca");
-                    Console.WriteLine($"Elegem van: {elegemvan}");
-                    Console.WriteLine($"Éhség: {ehseg}");
-                    Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
-                    Console.WriteLine($"Erő: {ero}\n\n");
-                    Console.WriteLine("Elindultál, az A és a B épület között tengődsz");
+                    statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, osztondij);
 
                     becsengo -= 1;
 
-                    //TODO
                     x1 = becsengo;
                     return 1;
                 }
@@ -673,7 +779,6 @@ namespace JedlikRPG
         }
         static int OrvosiSzoba(int elegemvan, int becsengo, out int x1, out int x2)
         {
-            Console.WriteLine("Mi a baj? Csak nem fáj valami?");
             becsengo += 5;
             x1 = elegemvan;
             x2 = becsengo;
@@ -693,11 +798,14 @@ namespace JedlikRPG
                     Console.WriteLine("Kiürítetted a kislányméretű hugyhólyagodat.");
                     elegemvan -= 5;
                     hugyholyag = 0;
+                    choice = 0;
                 }
                 else if (choice == 2)
                 {
                     Console.WriteLine("Hagytál magad után a fülkében egy kis cigiszagot, de nem baj, nem te cigizel iskolavécében egyedül.");
                     elegemvan -= 15;
+                    choice = 0;
+
                 }
             }
             x1 = elegemvan;
