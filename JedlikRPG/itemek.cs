@@ -7,10 +7,10 @@ namespace JedlikRPG
     {
         public static string[] Items = { "Kaja", "Alkohol", "Pelenka", "Eldobható pelenka", /*bufe*/ "Melegszendvics", "Energiaital", "Nyalóka", /*feketepiac*/ "Xanax", "UTP kábel", "Grántotta" };
         public static string[] Descriptions = { "Egyszerű pékáru ami csökkenti az éhséget.", "A subidubi segíti általános jókedvünk megőrzését", "A nap folyamán nem kell hugyoznod", "*Egyszer* bevizelhetsz",/*bufe*/ "Elsőre gombásnak hitted, ám ez egy sonkás szendvics.", "Végtére is a szíved és a fogaid nem ingyen lakbérben élnek...", "Az élet amúgyis szopás", /*feketepiac*/ "Nagyban csökkenti az elegem van statot.", "Ha már másra nem jó a CAT4-es szabvány...cserébe rendkívül fájdalmas", "Ételek királya, királyok étele." };
-        public static int[] Ehseg       = { -20, 0, 0, 0,  /*bufe*/-30, -5, 1, /*feketepiac*/ 0, 0, -100 };
-        public static int[] Elegemvan   = { 0, -20, 0, 0,/*bufe*/ 0, 0, 0,  /*feketepiac*/ -60, 0, -5 };
+        public static int[] Ehseg       = { -20, 0, 0, 0, /*bufe*/-30, 5, -7,/*feketepiac*/ 0, 0, -100 };
+        public static int[] Elegemvan   = { 0, -20, 0, 0,/*bufe*/ 0, 0, -10,/*feketepiac*/ -60, 0, -5 };
         public static int[] Hugyholyag  = { 0, 25, 0, 0,/*bufe*/ 0, 15, 0, /*feketepiac*/ 0, 0, 0 };
-        public static int[] Erő         = { 5, 5, 0, 0,/*bufe*/ 5, 10, 0, /*feketepiac*/ -5, 40, 18 };
+        public static int[] Erő         = { 5, 5, 0, 0,/*bufe*/ 5, 15, 1, /*feketepiac*/ -5, 60, 18 };
         public static string[] Ritkaság = { "common", "common", "perma", "boost", /*bufe*/ "common", "common", "common", /*feketepiac*/ "boost", "boost", "boost" };
 
         public static void UseItem(List<List<dynamic>> inventory, string itemToUse,int ehseg,int elegemvan, int hugyholyag,int ero,out int x1, out int x2, out int x3, out int x4, out List<List<dynamic>> x5)
@@ -73,7 +73,7 @@ namespace JedlikRPG
                 index++;
                 int itemID = Items.ToList().IndexOf(item[0]);
                 SetColor(Ritkaság[itemID]);
-                Console.WriteLine($"{index}. Item Name: {Items[itemID]}\n{Descriptions[itemID]}\n Stats: Elegemvan: {Elegemvan[itemID]}\tHugyholyag: {Hugyholyag[itemID]}\tErő: {Erő[itemID]}\nRitkaság: {Ritkaság[itemID]}");
+                Console.WriteLine($"{index}. Megnevezés: {Items[itemID]}\n{Descriptions[itemID]}\nStatok: Elegemvan: {Elegemvan[itemID]}\tHugyholyag: {Hugyholyag[itemID]}\tErő: {Erő[itemID]}\t\t\tMennyiség: {item[1]}\n");
             }
 
             Console.ForegroundColor = ConsoleColor.White;
@@ -93,6 +93,21 @@ namespace JedlikRPG
             {
                 Console.ForegroundColor = ConsoleColor.Red;
             }
+        }
+        public static void ItemSzam(List<List<dynamic>> inventory, string itemnev, out List<List<dynamic>> x1)
+        {
+            foreach (var item in inventory)
+            {
+                if (item[0] == itemnev)
+                {
+                    item[1] += 1;
+                    x1 = inventory;
+                    return;
+                }
+            }
+            inventory.Add(new List<dynamic> { itemnev, 1 });
+            x1 = inventory;
+
         }
     }
 }

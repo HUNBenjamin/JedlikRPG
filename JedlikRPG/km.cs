@@ -20,7 +20,7 @@ namespace JedlikRPG
                 int péz = osztondij;
                 Console.WriteLine($"Beléptél az Euróboltba");
                 Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
-                Console.WriteLine("1 -   Kaja(-20 éhség)\t3000f\n2 - Alkohol (-20 elegem van)\t5000f\n3 - Pelenka (A mai nap folyamán nem kell mosdóba menned)\t15.000f\n4 - Táska megtekintése\n5 - Kilépés az Euróboltból");
+                Console.WriteLine("1 - Kaja(-20 éhség)\t3000f\n2 - Alkohol (-20 elegem van)\t5000f\n3 - Pelenka (A mai nap folyamán nem kell mosdóba menned)\t15.000f\n4 - Táska megtekintése\n5 - Kilépés az Euróboltból");
                 while (!gameover)
                 {
                     while (choice >= 0 || choice <= 5)
@@ -29,9 +29,9 @@ namespace JedlikRPG
                         {
                             Console.WriteLine($"Beléptél az Euróboltba");
                             Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
-                            Console.WriteLine("1 -   Kaja(-20 éhség)                        3000f" +
-                                "\n2 - Alkohol (-20 elegem van)                             5000f" +
-                                "\n3 - Pelenka (A mai nap folyamán nem kell mosdóba menned) 15.000f" +
+                            Console.WriteLine("1 - Kaja(-20 éhség)                            3.000f" +
+                                "\n2 - Alkohol (-20 elegem van)                               5.500f" +
+                                "\n3 - Pelenka (A mai nap folyamán nem kell mosdóba menned)  15.000f" +
                                 "\n4 - Táska megtekintése" +
                                 "\n5 - Kilépés az Euróboltból");
                         }
@@ -47,10 +47,10 @@ namespace JedlikRPG
 
                                 Console.WriteLine("\nMegvetted az ételt.");
                                 péz -= 3000;
-                                Inventory.Add(new List<dynamic> { "Kaja", 1 });
-                                
+                            ItemSzam(Inventory, "Kaja", out Inventory);
                         }
-                            else{
+                        else
+                        {
                                 Console.Clear();
                                 Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 3000f");
                             }
@@ -60,7 +60,7 @@ namespace JedlikRPG
                         if (choice == 2)
                         {
 
-                            if (péz >= 6000)
+                            if (péz >= 5500)
                             {
                                 Console.Clear();
 
@@ -70,16 +70,15 @@ namespace JedlikRPG
                                 Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
                                 Console.WriteLine($"Egyenleged: {péz}");
                                 Console.WriteLine($"Erő: {ero}\n\n");
-
+                                péz -= 5500;
                                 Console.WriteLine("\nEgy üveg vodkával nehezebb lett a táskád.");
-                                Inventory.Add(new List<dynamic> { "Alkohol", 1 });
-                                Console.WriteLine("");
+                                ItemSzam(Inventory, "Alkohol", out Inventory);
                                 
                             }
                             else
                             {
                                 Console.Clear();
-                                Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 6000f");
+                                Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 5500f");
                             }
                             choice = 0;
                             }
@@ -97,10 +96,9 @@ namespace JedlikRPG
                                 Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
                                 Console.WriteLine($"Egyenleged: {péz}");
                                 Console.WriteLine($"Erő: {ero}\n\n");
-
+                                péz -= 15000;
                                 Console.WriteLine("\nEltetted a pelust");
-                                Inventory.Add(new List<dynamic> { "Pelenka", 1 });
-                                Console.WriteLine("");
+                                ItemSzam(Inventory, "Pelenka", out Inventory);
                         }
                         else
                         {

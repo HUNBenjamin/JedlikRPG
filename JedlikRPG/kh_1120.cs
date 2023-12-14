@@ -13,6 +13,7 @@ namespace JedlikRPG
         public int Osztondij { get; private set; }
         public double Esely { get; private set; }
         public double Bonusz { get; private set; }
+        public int MegvernekEsely { get; private set; }
         public void NehezsegErtekek(int nehezseg)
         {
             Random randomEsemeny = new Random();
@@ -24,6 +25,7 @@ namespace JedlikRPG
                     Osztondij = 60000;
                     Esely = 0.1;
                     Bonusz = 1;
+                    MegvernekEsely = 100;
                     break;
 
                 case 2:
@@ -32,6 +34,7 @@ namespace JedlikRPG
                     Osztondij = 42000;
                     Esely = 0.25;
                     Bonusz = 2.5;
+                    MegvernekEsely = 50;
                     break;
 
                 case 3:
@@ -40,6 +43,7 @@ namespace JedlikRPG
                     Osztondij = 25000;
                     Esely = 0.4;
                     Bonusz = 4.0;
+                    MegvernekEsely = 20;
                     break;
 
                 case 4:
@@ -48,6 +52,7 @@ namespace JedlikRPG
                     Osztondij = 8000;
                     Esely = 0.6;
                     Bonusz = 6.0;
+                    MegvernekEsely = 10;
                     break;
 
                 default:

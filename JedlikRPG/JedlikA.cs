@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 using DocumentFormat.OpenXml.Office2021.MipLabelMetaData;
 using System;
 using System.Collections.Generic;
@@ -93,7 +94,10 @@ namespace JedlikRPG
                     {
                         choice = 0;
                     }
-
+                    if (folyoso(ora, becsengo, difficulty, out becsengo) == 3)
+                    {
+                        bufe(choice, elegemvan, ehseg, hugyholyag, osztondij, ero, gameover, Inventory, out Inventory, out osztondij);
+                    }
                     if (folyoso(ora, becsengo, difficulty, out becsengo) == 11)
                     {
                     if (ebedlo(osztondij, choice, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, Inventory, out osztondij, out choice, out becsengo, out gameover) == 1)
@@ -106,6 +110,7 @@ namespace JedlikRPG
                         choice = 0;
                     }
                     }
+
                 }
                 if (choice == 4)
                 {
@@ -240,7 +245,7 @@ namespace JedlikRPG
             Console.WriteLine("Az itt vett tárgyak rögtön felhasználásra kerülnek.");
             Console.WriteLine("1 - XXL-Túrórudi (+5 erő, -7 éhség)                      700f" +
                               "\n2 - Kávé (+10 erő -5 elegemvan)                        800f" +
-                              "\n3 - Eldobható pelenka (egyszer behugyozhatsz)         3500f" +
+                              "\n3 - Eldobható pelenka (egyszer behugyozhatsz)        3.500f" +
                               "\n4 - Táska megtekintése" +
                               "\n5 - Ellépsz az automatától");
             while (!gameover)
@@ -253,7 +258,7 @@ namespace JedlikRPG
                         Console.WriteLine("Az itt vett tárgyak rögtön felhasználásra kerülnek.");
                         Console.WriteLine("1 - XXL-Túrórudi (+5 erő, -7 éhség)                      700f" +
                                           "\n2 - Kávé (+10 erő -5 elegemvan)                        800f" +
-                                          "\n3 - Eldobható pelenka (egyszer behugyozhatsz)         3500f" +
+                                          "\n3 - Eldobható pelenka (egyszer behugyozhatsz)        3.500f" +
                                           "\n4 - Táska megtekintése" +
                                           "\n5 - Ellépsz az automatától");
                     }
@@ -303,7 +308,7 @@ namespace JedlikRPG
                             statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
                             Console.WriteLine("\nMindenkivel megesik, ne légy áldozat. Hordj Pelenkát!.");
                             péz -= 3500;
-                            Inventory.Add(new List<dynamic> { "Eldobható pelenka", 1 });
+                            ItemSzam(Inventory, "Eldobható pelenka", out Inventory);
                         }
                         else
                         {
@@ -364,49 +369,168 @@ namespace JedlikRPG
                 Console.WriteLine("\nAz ebédlő számos lehetőséget nyújt");
                 Console.WriteLine("\n1 - Vegyél valami finomat (2 perc)\n2 - Lopd el valaki uzsipénzét (2 perc)\n");
             }
+            if (choice == 1)
+            {
+            automata(choice, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, difficulty, out elegemvan, out ehseg, out hugyholyag, out ero, out gameover, out Inventory, out osztondij);
+            }
+            if (choice == 2)
+            {
+                Random veres = new Random();
+                int vereschance = veres.Next(0, 10/*difficulty.MegvernekEsely*/);
 
-                if (choice == 1)
+                if (vereschance == 5)
                 {
-                automata(choice, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, difficulty, out elegemvan, out ehseg, out hugyholyag, out ero, out gameover, out Inventory, out osztondij);
+                    Console.Clear();
+                    becsengo -= 2;
+                    Console.WriteLine("A másvilágra vertek lopási kísérlet miatt\nVége a játéknak");
+                    gameover = true;
+                    x1 = osztondij;
+                    x2 = choice;
+                    x3 = becsengo;
+                    x4 = gameover;
+                    return 1;
                 }
-
-                if (choice == 2)
-                {
-                    Random veres = new Random();
-                    int vereschance = veres.Next(0, 10);
-
-                    if (vereschance == 5)
-                    {
-                        Console.Clear();
-                        //TODO nehézség
-                        becsengo -= 2;
-                        Console.WriteLine("A másvilágra vertek lopási kísérlet miatt\nVége a játéknak");
-                        gameover = true;
-                        x1 = osztondij;
-                        x2 = choice;
-                        x3 = becsengo;
-                        x4 = gameover;
-                        return 1;
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        osztondij += (int)(1000 * difficulty.Bonusz);
-                        becsengo -= 2;
-                        Console.WriteLine("A rablás nem is áll olyan rosszul neked");
-                        choice = 0;
-                    }
-                }
-
                 else
                 {
-                    becsengo -= 1;
+                    Console.Clear();
+                    osztondij += (int)(1000 * difficulty.Bonusz);
+                    becsengo -= 2;
+                    Console.WriteLine("A rablás nem is áll olyan rosszul neked");
+                    choice = 0;
                 }
+            }
+            else
+            {
+                becsengo -= 1;
+            }
             x1 = osztondij;
             x2 = choice;
             x3 = becsengo;
             x4 = gameover;
             return 0;
+        }
+
+        static int bufe(int choice, int elegemvan, int ehseg, int hugyholyag, int osztondij, int ero, bool gameover, List<List<dynamic>> Inventory, out List<List<dynamic>> x6, out int x7)
+        {
+            int péz = osztondij;
+            Console.WriteLine($"Magabiztosan odaállsz a büfé elé és a következő csodákat találod:");
+            Console.WriteLine("Hatékonyan csökkentheted az éhséged és növelheted a vérhas esélyét.");
+            Console.WriteLine("1 - Melegszendvics (-30 éhség)        4.500f" +
+                              "\n2 - Energiaital (+10 erő)           3.000f" +
+                              "\n3 - Nyalóka (-10 elegem van)        1.500f" +
+                              "\n4 - Táska megtekintése" +
+                              "\n5 - Kilépés az Euróboltból");
+
+                while (choice >= 0 || choice <= 5)
+                {
+                    if (choice == 0)
+                    {
+                        Console.WriteLine($"Beléptél az Euróboltba");
+                        Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
+                        Console.WriteLine("1 - Melegszendvics" +
+                                          "\n2 - Energiaital" +
+                                          "\n3 - Nyalóka" +
+                                          "\n4 - Táska megtekintése" +
+                                          "\n5 - Kilépés az Euróboltból");
+                    }
+                    choice = Input("Választás: ");
+
+                    if (choice == 1)
+                    {
+                        if (péz >= 4500)
+                        {
+                            Console.Clear();
+
+                            statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
+
+                            Console.WriteLine("\nVettél egy magad sem tudod milyen feltéttel rendelkező szendvicset.");
+                            péz -= 4500;
+                            ItemSzam(Inventory, "Melegszendvics", out Inventory);
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 4500f");
+                        }
+                        choice = 0;
+                    }
+
+                    if (choice == 2)
+                    {
+
+                        if (péz >= 3000)
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"Idő: ");
+                            Console.WriteLine($"Elegem van: {elegemvan}");
+                            Console.WriteLine($"Éhség: {ehseg}");
+                            Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+                            Console.WriteLine($"Egyenleged: {péz}");
+                            Console.WriteLine($"Erő: {ero}\n\n");
+                            péz -= 3000;
+                            Console.WriteLine("\n50 gramm cukorral nőtt a táskád tápértéke.");
+                            ItemSzam(Inventory, "Energiaital", out Inventory);
+
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 3000f");
+                        }
+                        choice = 0;
+                    }
+
+                    if (choice == 3)
+                    {
+
+                        if (péz > 1500)
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine($"Idő: ");
+                            Console.WriteLine($"Elegem van: {elegemvan}");
+                            Console.WriteLine($"Éhség: {ehseg}");
+                            Console.WriteLine($"Húgyhólyag állapota: {hugyholyag}");
+                            Console.WriteLine($"Egyenleged: {péz}");
+                            Console.WriteLine($"Erő: {ero}\n\n");
+                            péz -= 1500;
+                            Console.WriteLine("\nVettél egy savanyú nyalókát.");
+                            ItemSzam(Inventory, "Nyalóka", out Inventory);
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 1500f");
+                        }
+                        choice = 0;
+
+                    }
+
+                    if (choice == 4)
+                    {
+                        int altChoice = -1;
+                        while (altChoice == -1)
+                        {
+                            PrintInventory(Inventory);
+                            Console.WriteLine("0. Kilépés");
+                            altChoice = Input("Választás: ");
+                        }
+                        if (altChoice == 0) break;
+                        else
+                        {
+                            UseItem(Inventory, Inventory[altChoice - 1][0], ehseg, elegemvan, hugyholyag, ero, out ehseg, out elegemvan, out hugyholyag, out ero, out Inventory);
+                        }
+                    }
+                    if (choice == 5)
+                    {
+                        x6 = Inventory;
+                        x7 = péz;
+                    }
+                }
+            x6 = Inventory;
+            x7 = péz;
+            return 1;
         }
 
         static int folyoso(string ora, int becsengo, Difficulty difficulty, out int x2)

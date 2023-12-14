@@ -148,7 +148,7 @@ namespace JedlikRPG
             Console.WriteLine($"Egy dohos porfedte padlóra vetetted lábad, a sötetben felcsillan egy szempár és a következő árucikkeket ajánlja fel:");
             Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
             Console.WriteLine("1 - Xanax (-60 elegem van)          15.000f" +
-                              "\n2 - UTP kábel (+40 erő)           18.000f" +
+                              "\n2 - UTP kábel (+40 erő)           15.000f" +
                               "\n3 - Grántotta (-100 éhség)        15.000f" +
                               "\n4 - Táska megtekintése" +
                               "\n5 - Vissza a fénybe"); 
@@ -175,7 +175,8 @@ namespace JedlikRPG
                             statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
                             Console.WriteLine("\nModern problémák, modern megoldások.");
                             péz -= 15000;
-                            Inventory.Add(new List<dynamic> { "Xanax", 1 });
+                            ItemSzam(Inventory, "Xanax", out Inventory);
+       
                         }
                         else
                         {
@@ -192,7 +193,7 @@ namespace JedlikRPG
                             statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
                             Console.WriteLine("\nFelfegyverkeztél egy UTP kábellel. A csillogó műanyag tekintélyt parancsolva csillog a zsebedben.");
                             péz -= 18000;
-                            Inventory.Add(new List<dynamic> { "UTP kábel", 1 });
+                            ItemSzam(Inventory, "UTP kábel", out Inventory);
                         }
                         else
                         {
@@ -209,12 +210,12 @@ namespace JedlikRPG
                             statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
                             Console.WriteLine("\nGrántottás vagy.");
                             péz -= 15000;
-                            Inventory.Add(new List<dynamic> { "Grántotta", 1 });
+                            ItemSzam(Inventory, "Grántotta", out Inventory);
                         }
                         else
                         {
                             Console.Clear();
-                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 16000f");
+                            Console.WriteLine($"Nincs elég pénzed\nJelenlegi egyenleged: {péz}\nSzükséges egyenleg: 15000f");
                         }
                         choice = 0;
                     }
