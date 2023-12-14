@@ -31,6 +31,10 @@ namespace JedlikRPG
                     statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
                     Tesi(elegemvan, ero, out elegemvan, out ero);
                     choice = 0;
+
+                    Console.WriteLine("Gratulálunk, túléltél egy napot.");
+                    Environment.Exit(0);    
+
                 }
                 else if (choice == 2)
                 {

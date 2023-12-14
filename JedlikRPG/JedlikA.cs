@@ -56,7 +56,6 @@ namespace JedlikRPG
                 Console.WriteLine($"\nA következő órád {ora}. Menj órára mielőtt becsengetnek ({becsengo} perc)\n");
                 Console.WriteLine("\n1 - Első kapu (1 perc)\n2 - Hátsó kapu (2 perc)\n3 - Folyosó (1 perc)");
                 choice = Input("Választás: ");
-            }
                 if (choice == 1)
                 {
                     if (elsoKapu(becsengo, elegemvan, ehseg, hugyholyag, ero, out becsengo) == 0)
@@ -97,7 +96,7 @@ namespace JedlikRPG
                             }
                             else
                             {
-                                Console.WriteLine($"Nem most lesz {ora}, te nagyon okos");
+                                Console.WriteLine($"Nem most lesz angol, te nagyon okos");
                                 choice = 0;
                             }
                         }
@@ -214,6 +213,7 @@ namespace JedlikRPG
                             ora = "tesi";
                             choice = 0;
                             becsengo = 10;
+                            JedlikA(choice, becsengo, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, difficulty, out choice, out becsengo, out elegemvan, out ehseg, out hugyholyag, out ero, out Inventory, out gameover, out osztondij);
                         }
                     }
                     else
@@ -221,10 +221,12 @@ namespace JedlikRPG
                         Console.WriteLine($"Nem most lesz {ora}, te nagyon okos");
                         choice = 0;
                     }
+                    
+                    choice = 0;
 
                 }
 
-                if (folyoso(ora, becsengo, difficulty, out becsengo) == 11)
+                if (folyoso(ora, becsengo, difficulty, out becsengo) == 10)
                     {
                         if (ebedlo(osztondij, choice, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, Inventory, out osztondij, out choice, out becsengo, out gameover) == 1)
                         {
@@ -269,10 +271,71 @@ namespace JedlikRPG
                     return 1;
                 }
 
-            if (becsengo < 0 && ora == "matek")
-            {
-                Console.WriteLine("Nem értél be időben órára, sajnos kirúgtak.");
-                gameover = true;
+                if (becsengo < 0 && ora == "angol")
+                {
+                    Console.WriteLine("Nem értél be időben órára, sajnos kirúgtak.");
+                    gameover = true;
+                    x1 = choice;
+                    x2 = becsengo;
+                    x3 = elegemvan;
+                    x4 = ehseg;
+                    x5 = hugyholyag;
+                    x6 = ero;
+                    x7 = Inventory;
+                    x8 = gameover;
+                    x9 = osztondij;
+                    return 1;
+                }
+
+                if (becsengo < 0 && ora == "irodalom")
+                {
+                    Console.WriteLine("Nem értél be időben órára, sajnos kirúgtak.");
+                    gameover = true;
+                    x1 = choice;
+                    x2 = becsengo;
+                    x3 = elegemvan;
+                    x4 = ehseg;
+                    x5 = hugyholyag;
+                    x6 = ero;
+                    x7 = Inventory;
+                    x8 = gameover;
+                    x9 = osztondij;
+                    return 1;
+                }
+
+                if (becsengo < 0 && ora == "történelem")
+                {
+                    Console.WriteLine("Nem értél be időben órára, sajnos kirúgtak.");
+                    gameover = true;
+                    x1 = choice;
+                    x2 = becsengo;
+                    x3 = elegemvan;
+                    x4 = ehseg;
+                    x5 = hugyholyag;
+                    x6 = ero;
+                    x7 = Inventory;
+                    x8 = gameover;
+                    x9 = osztondij;
+                    return 1;
+                }
+
+                if (becsengo < 0 && ora == "fizika")
+                {
+                    Console.WriteLine("Nem értél be időben órára, sajnos kirúgtak.");
+                    gameover = true;
+                    x1 = choice;
+                    x2 = becsengo;
+                    x3 = elegemvan;
+                    x4 = ehseg;
+                    x5 = hugyholyag;
+                    x6 = ero;
+                    x7 = Inventory;
+                    x8 = gameover;
+                    x9 = osztondij;
+                    return 1;
+                }
+
+                }
                 x1 = choice;
                 x2 = becsengo;
                 x3 = elegemvan;
@@ -282,20 +345,8 @@ namespace JedlikRPG
                 x7 = Inventory;
                 x8 = gameover;
                 x9 = osztondij;
-                return 1;
+                return 0;
             }
-
-            x1 = choice;
-            x2 = becsengo;
-            x3 = elegemvan;
-            x4 = ehseg;
-            x5 = hugyholyag;
-            x6 = ero;
-            x7 = Inventory;
-            x8 = gameover;
-            x9 = osztondij;
-            return 0;
-        }
 
         static int elsoKapu(int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, out int x1)
         {
@@ -662,7 +713,7 @@ namespace JedlikRPG
             while (choice < 1 || choice > 11)
             {
                 Console.WriteLine($"\nA következő órád {ora}. Menj órára mielőtt becsengetnek ({becsengo} perc)\n");
-                Console.WriteLine("\n1 - Gépészlépcső (1 perc)\n2 - Orvosi szoba (1 perc)\n3 - Büfé (1 perc)\n4 - Mellékhelyiség (1 perc)\n5 - Matek óra terme (1 perc)\n6 - Angol óra terme (1 perc)\n7 - Történelem óra terme (1 perc)\n8 - Fizika óra terme (1 perc)\n9 - Irodalom óra terme (1 perc)\n10 - Gépterem (1 perc)\n11 - Ebédlő (1 perc)\n");
+                Console.WriteLine("\n1 - Gépészlépcső (1 perc)\n2 - Orvosi szoba (1 perc)\n3 - Büfé (1 perc)\n4 - Mellékhelyiség (1 perc)\n5 - Matek óra terme (1 perc)\n6 - Angol óra terme (1 perc)\n7 - Történelem óra terme (1 perc)\n8 - Fizika óra terme (1 perc)\n9 - Irodalom óra terme (1 perc)\n10 - Ebédlő (1 perc)\n");
                 choice = Input("Választás: ");
             }
 
@@ -716,13 +767,8 @@ namespace JedlikRPG
                 x2 = becsengo;
                 return 10;
             }
-            if (choice == 11)
-            {
-                x2 = becsengo;
-                return 11;
-            }
-            x2 = becsengo;
-            return 0;
+        x2 = becsengo;
+        return 0;
         }
 
         static int gepeszlepcso(int osztondij, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, Difficulty difficulty, out int x1, out int x2)
