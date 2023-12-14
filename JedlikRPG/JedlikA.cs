@@ -78,17 +78,26 @@ namespace JedlikRPG
                 }
                 if (choice == 3)
                 {
+                    folyoso(ora, becsengo, difficulty, out becsengo);
+                    if (folyoso(ora, becsengo, difficulty, out becsengo) == 1)
+                    {
+                        gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo);
+                    }
+                    if (folyoso(ora, becsengo, difficulty, out becsengo) == 2)
+                    {
+                        OrvosiSzoba(elegemvan, becsengo, out elegemvan, out becsengo);
+                    }
                     if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 1)
                     {
-                        //TODO orvosi szoba
+                        OrvosiSzoba(elegemvan, becsengo, out elegemvan, out becsengo);
+                    }
+                    else if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 2)
+                    {
+                        Console.WriteLine("mingya");
                     }
                     else if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 3)
                     {
-                        //angolTerem
-                    }
-                    else if (gepeszlepcso(osztondij, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, out elegemvan, out becsengo) == 3)
-                    {
-                        folyoso(ora, becsengo, difficulty, out becsengo);
+                        //idk
                     }
                     else
                     {
@@ -100,15 +109,15 @@ namespace JedlikRPG
                     }
                     if (folyoso(ora, becsengo, difficulty, out becsengo) == 11)
                     {
-                    if (ebedlo(osztondij, choice, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, Inventory, out osztondij, out choice, out becsengo, out gameover) == 1)
-                    {
-                        gameover = true;
-                        break;
-                    }
-                    else
-                    {
-                        choice = 0;
-                    }
+                        if (ebedlo(osztondij, choice, becsengo, elegemvan, ehseg, hugyholyag, ero, gameover, difficulty, Inventory, out osztondij, out choice, out becsengo, out gameover) == 1)
+                        {
+                            gameover = true;
+                            break;
+                        }
+                        else
+                        {
+                            choice = 0;
+                        }
                     }
 
                 }
@@ -359,6 +368,7 @@ namespace JedlikRPG
         {
             becsengo -= 1;
             Console.Clear();
+            choice = 0;
             while (choice < 1 || choice > 3)
             {
                 Console.WriteLine($"Helyszín: Ebédlő");
@@ -368,10 +378,11 @@ namespace JedlikRPG
                 Console.WriteLine($"Erő: {ero}\n\n");
                 Console.WriteLine("\nAz ebédlő számos lehetőséget nyújt");
                 Console.WriteLine("\n1 - Vegyél valami finomat (2 perc)\n2 - Lopd el valaki uzsipénzét (2 perc)\n");
+                choice = Input("Választás: ");
             }
             if (choice == 1)
             {
-            automata(choice, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, difficulty, out elegemvan, out ehseg, out hugyholyag, out ero, out gameover, out Inventory, out osztondij);
+                automata(choice, elegemvan, ehseg, hugyholyag, ero, Inventory, gameover, osztondij, difficulty, out elegemvan, out ehseg, out hugyholyag, out ero, out gameover, out Inventory, out osztondij);
             }
             if (choice == 2)
             {
@@ -419,19 +430,19 @@ namespace JedlikRPG
                               "\n2 - Energiaital (+10 erő)           3.000f" +
                               "\n3 - Nyalóka (-10 elegem van)        1.500f" +
                               "\n4 - Táska megtekintése" +
-                              "\n5 - Kilépés az Euróboltból");
+                              "\n5 - Kilépés az büféből");
 
                 while (choice >= 0 || choice <= 5)
                 {
                     if (choice == 0)
                     {
-                        Console.WriteLine($"Beléptél az Euróboltba");
-                        Console.WriteLine("Itt különböző tárgyakat tudsz venni, amelyek segíthetnek átjutni a napodon");
+                        Console.WriteLine($"Magabiztosan odaállsz a büfé elé és a következő csodákat találod:");
+                        Console.WriteLine("Hatékonyan csökkentheted az éhséged és növelheted a vérhas esélyét.");
                         Console.WriteLine("1 - Melegszendvics" +
                                           "\n2 - Energiaital" +
                                           "\n3 - Nyalóka" +
                                           "\n4 - Táska megtekintése" +
-                                          "\n5 - Kilépés az Euróboltból");
+                                          "\n5 - Kilépés az büféből");
                     }
                     choice = Input("Választás: ");
 
@@ -526,6 +537,7 @@ namespace JedlikRPG
                     {
                         x6 = Inventory;
                         x7 = péz;
+                    return 1;
                     }
                 }
             x6 = Inventory;
@@ -658,6 +670,167 @@ namespace JedlikRPG
             x2 = becsengo;
             return 0;
 
+        }
+        static int OrvosiSzoba(int elegemvan, int becsengo, out int x1, out int x2)
+        {
+            Console.WriteLine("Mi a baj? Csak nem fáj valami?");
+            becsengo += 5;
+            x1 = elegemvan;
+            x2 = becsengo;
+            return 1;
+        }
+        static int Mellekhelyiseg(int elegemvan, int becsengo, int hugyholyag, out int x1, out int x2, out int x3)
+        {
+            Console.WriteLine("Nem véletlen jöttél mosdóba.\nMit szeretnél tenni?");
+            Console.WriteLine("1 - Hugyozni\n2 - Dohányozni");
+            Console.Write("Választás: ");
+            int choice = 0;
+            while (choice < 1 || choice > 2)
+            {
+                choice = int.Parse(Console.ReadLine());
+                if (choice == 1)
+                {
+                    Console.WriteLine("Kiürítetted a kislányméretű hugyhólyagodat.");
+                    elegemvan -= 5;
+                    hugyholyag = 0;
+                }
+                else if (choice == 2)
+                {
+                    Console.WriteLine("Hagytál magad után a fülkében egy kis cigiszagot, de nem baj, nem te cigizel iskolavécében egyedül.");
+                    elegemvan -= 15;
+                }
+            }
+            x1 = elegemvan;
+            x2 = becsengo;
+            x3 = hugyholyag;
+            return 1;
+        }
+        static int Matek(int elegemvan, int becsengo, int ehseg, int hugyholyag, bool gameover, out int x1, out int x2, out int x3, out int x4)
+        {
+            Console.WriteLine("Fazakas Miklós tanár úr 4 percet késett csak.\nÍrtál házit? Nem baj ha nem, úgyis csak dísznek adja fel.");
+            Console.WriteLine("Jaj ne, elkövette a táblán a mai negyedik hibáját!\nMit teszel?");
+            Console.WriteLine("1 - Szólsz Fazakasnak, hogy baj van\n2 - Kacagsz egy jót, miközben keresi, hol a hiba");
+            Console.Write("Választás: ");
+            int choice = 0;
+            while (choice < 1 || choice > 2)
+            {
+                choice = int.Parse(Console.ReadLine());
+                if (choice == 1)
+                {
+                    Console.WriteLine("Ahelyett, hogy megnézte volna azt a hibát, amit mondtál, inkább kiosztott, mert megzavartad a gondolatmenetében.");
+                    elegemvan += 10;
+                }
+                else if (choice == 2)
+                {
+                    Console.WriteLine("Megvolt az óra fénypontja, ennél jobb nem lesz.");
+                    elegemvan -= 5;
+                }
+            }
+            Console.WriteLine("Csongort megint Csengének hívta.");
+            Console.WriteLine("Vége az órának.");
+            elegemvan += 5;
+            x1 = elegemvan;
+            x2 = becsengo;
+            x3 = ehseg;
+            x4 = hugyholyag;
+            return 1;
+        }
+        static int Angol(int elegemvan, int becsengo, int ehseg, int hugyholyag, bool gameover, out int x1, out int x2, out int x3, out int x4)
+        {
+            Random random = new Random();
+            Console.WriteLine("NTF csak beesett 5 perc késéssel.\nNyugi, házi nem volt.");
+            int doga = random.Next(1, 3);
+            if (doga == 1)
+            {
+                Console.WriteLine("Gentlemen, I have goooood news!\n5 sentences, 5 seconds.");
+                elegemvan += 5;
+            }
+            else if (doga == 2)
+            {
+                Console.WriteLine("Gentleman, unfortunately I have bad news...");
+            }
+            doga = 0;
+            Console.WriteLine("Óra közben elgondolkoztál azon, hogy sok értelme nincs az órának, hiszen az emelt érettségis feladatokat végig hibátlanul oldod meg.");
+            Console.WriteLine("Vége az órának.");
+            elegemvan = 5;
+            x1 = elegemvan;
+            x2 = becsengo;
+            x3 = ehseg;
+            x4 = hugyholyag;
+            return 1;
+        }
+        static int Tortenelem(int elegemvan, int becsengo, int ehseg, int hugyholyag, bool gameover, out int x1, out int x2, out int x3, out int x4)
+        {
+            Random random = new Random();
+            Console.WriteLine("Nem is tudod mennyit késett Tozó, de valahogy nem is tud érdekelni.");
+            int feleles = random.Next(1, 5);
+            if (feleles == 1 || feleles == 4)
+            {
+                Console.WriteLine("Hááát, mára felelés volt kiadva...\nImádkozz, hogy ne te kerülj sorra.");
+                if (feleles == 4)
+                {
+                    Console.WriteLine("Téged választott, neked annyi, ugyanis nem tanultál semmit.");
+                    elegemvan += 10;
+                }
+                else
+                {
+                    Console.WriteLine("A mai a szerencsenapod, nem téged választott.");
+                }
+                elegemvan += 5;
+            }
+            else
+            {
+                Console.WriteLine("Ma nem felelünk.");
+            }
+            feleles = 0;
+            Console.WriteLine("Ez egy nyugis óra, csak próbálj meg nem bealudni.");
+            Console.WriteLine("Vége az órának.");
+            elegemvan += 5;
+            x1 = elegemvan;
+            x2 = becsengo;
+            x3 = ehseg;
+            x4 = hugyholyag;
+            return 1;
+        }
+        static int Fizika(int elegemvan, int becsengo, int ehseg, int hugyholyag, bool gameover, out int x1, out int x2, out int x3, out int x4)
+        {
+            Random random = new Random();
+            Console.WriteLine("8 perc késés, nem korai egy kicsit tanárnő?");
+            int feleles = random.Next(1, 3);
+            if (feleles == 1)
+            {
+                Console.WriteLine("Na, gyorsan csukjatok be mindent...");
+                Console.WriteLine("Mivel senki nem tud semmit, te is sorrakerültél (te se tudsz semmit, miért is tudnál).");
+                elegemvan += 10;
+            }
+            else
+            {
+                Console.WriteLine("Ma nem felelünk.");
+            }
+            Console.WriteLine("Természetesen a kicsengő előtt 2 perccel még van idő még egy feladatra (mire előkeresi kicsengetnek).");
+            Console.WriteLine("Vége az órának (3 perccel kicsengő után).");
+            elegemvan += 15;
+            becsengo += 3;
+            x1 = elegemvan;
+            x2 = becsengo;
+            x3 = ehseg;
+            x4 = hugyholyag;
+            return 1;
+        }
+        static int Irodalom(int elegemvan, int becsengo, int ehseg, int hugyholyag, bool gameover, out int x1, out int x2, out int x3, out int x4)
+        {
+            Random random = new Random();
+            Console.WriteLine("Detréné valahogy bevonszolta magát 5 perc késéssel a tanárija melletti terembe.");
+            Console.WriteLine("Feltett neked egy szubjektív kérdést, te megválaszoltad, de szerinte nincs igazad.");
+            elegemvan += 5;
+            Console.WriteLine("Szavakba nem önthető, mennyire nem történik semmi ezen az órán, de figyelned kell, mert észreveszi, ha másfele jár az eszed.");
+            Console.WriteLine("Vége az órának.");
+            elegemvan += 30;
+            x1 = elegemvan;
+            x2 = becsengo;
+            x3 = ehseg;
+            x4 = hugyholyag;
+            return 1;
         }
     }
 }
