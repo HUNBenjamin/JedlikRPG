@@ -31,8 +31,8 @@ namespace JedlikRPG
                     statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
                     Tesi(elegemvan, ero, out elegemvan, out ero);
                     choice = 0;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("Gratulálunk, túléltél egy napot.\n\r\n                   ██████████████                 \r\n               ████▒▒▒▒▒▒▒▒▒▒▒▒▒▒████             \r\n             ██▒▒▒▒▒▒          ▒▒▒▒▒▒██           \r\n           ██▒▒▒▒      ░░░░░░      ▒▒▒▒██         \r\n         ██▒▒▒▒    ░░░░░░░░░░░░░░    ▒▒▒▒██       \r\n         ██▒▒    ░░░░██████████░░░░    ▒▒██       \r\n       ██▒▒▒▒  ░░░░██          ██░░░░  ▒▒▒▒██     \r\n       ██████  ░░██              ██░░    ▒▒██     \r\n     ██      ████  ████          ██░░░░  ▒▒██     \r\n   ██                  ██        ████░░██████     \r\n   ██                  ██      ██    ██    ████   \r\n     ██    ████      ██      ██                ██ \r\n       ████    ██████        ██                ██ \r\n                              ██             ██   \r\n                               ██        ████     \r\n                                 ████████         \r\n\r\n");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nGratulálunk, túléltél egy napot.\n");
                     Environment.Exit(0);    
 
                 }
