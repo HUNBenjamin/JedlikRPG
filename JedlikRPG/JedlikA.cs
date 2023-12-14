@@ -478,8 +478,8 @@ namespace JedlikRPG
         static int ebedlo(int osztondij, int choice, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, Difficulty difficulty,List<List<dynamic>> Inventory, out int x1, out int x2, out int x3, out bool x4)
         {
             becsengo -= 1;
-            hugyholyag += 1;
-            ehseg += 1;
+            hugyholyag += 3;
+            ehseg += 2;
             Console.Clear();
             choice = 0;
             while (choice < 1 || choice > 3)
@@ -738,8 +738,8 @@ namespace JedlikRPG
             Random rand = new Random();
 
             becsengo -= 1;
-            hugyholyag += 1;
-            ehseg += 1;
+            hugyholyag += 3;
+            ehseg += 2;
             Console.Clear();
 
             double ajulas = rand.NextDouble();
