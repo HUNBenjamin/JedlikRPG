@@ -22,7 +22,10 @@ namespace JedlikRPG
                     Console.Write("Választás: ");
                     choice = int.Parse(Console.ReadLine());
                 }
-                if (choice == 1)
+
+                string ora = "tesi";
+
+                if (choice == 1 && ora == "tesi")
                 {
                     Console.Clear();
                     statDisplay(choice, elegemvan, ehseg, hugyholyag, ero, gameover, Inventory, péz);
@@ -64,6 +67,8 @@ namespace JedlikRPG
             x10 = choice;
             return 0;
         }
+
+
         static void Tesi(int elegemvan, int ero, out int x1, out int x2)
         {
             Random random = new Random();
