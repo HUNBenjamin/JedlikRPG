@@ -529,6 +529,8 @@ namespace JedlikRPG
         static int ebedlo(int osztondij, int choice, int becsengo, int elegemvan, int ehseg, int hugyholyag, int ero, bool gameover, Difficulty difficulty,List<List<dynamic>> Inventory, out int x1, out int x2, out int x3, out bool x4)
         {
             becsengo -= 1;
+            hugyholyag += 3;
+            ehseg += 2;
             Console.Clear();
             choice = 0;
             while (choice < 1 || choice > 3)
@@ -555,6 +557,8 @@ namespace JedlikRPG
                 {
                     Console.Clear();
                     becsengo -= 2;
+                    hugyholyag += 1;
+                    ehseg += 1;
                     Console.WriteLine("A másvilágra vertek lopási kísérlet miatt\nVége a játéknak");
                     gameover = true;
                     x1 = osztondij;
@@ -568,6 +572,8 @@ namespace JedlikRPG
                     Console.Clear();
                     osztondij += (int)(1000 * difficulty.Bonusz);
                     becsengo -= 2;
+                    hugyholyag += 1;
+                    ehseg += 1;
                     Console.WriteLine("A rablás nem is áll olyan rosszul neked");
                     choice = 0;
                 }
@@ -575,6 +581,8 @@ namespace JedlikRPG
             else
             {
                 becsengo -= 1;
+                hugyholyag += 1;
+                ehseg += 1;
             }
             x1 = osztondij;
             x2 = choice;
@@ -776,6 +784,8 @@ namespace JedlikRPG
             Random rand = new Random();
 
             becsengo -= 1;
+            hugyholyag += 3;
+            ehseg += 2;
             Console.Clear();
 
             double ajulas = rand.NextDouble();
