@@ -98,7 +98,8 @@ namespace JedlikRPG
                 }
                 else
                 {
-                    Console.WriteLine("placeholder");
+                    Console.WriteLine("Vesztettél");
+                    Environment.Exit(0);
                 }
             }
         }
